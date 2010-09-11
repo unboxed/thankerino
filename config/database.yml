@@ -1,0 +1,14 @@
+development:
+  adapter: mysql2
+  database: thank_you_development
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: mysql2
+  database: thank_you_test
+  pool: 5
+  timeout: 5000
+
+production:
+  development
