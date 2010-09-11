@@ -11,6 +11,14 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
+    when /the registration page/
+      new_account_url
+
+    when /the login page/
+      new_user_session_url
+
+    when /the user profile page/
+      edit_account_url
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

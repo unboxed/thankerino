@@ -2,6 +2,7 @@ ThankYouNew::Application.routes.draw do
   resource :account, :controller => "users"
   resources :user
   resource :user_session
+  root :to => "user_sessions#new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

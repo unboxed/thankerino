@@ -2,6 +2,10 @@
 
 <%= form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
+
+  <%= f.label :name %><br />
+  <%= f.text_field :name %><br />
+
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Update" %>
 <% end %>

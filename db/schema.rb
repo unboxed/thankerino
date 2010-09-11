@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100911141429) do
+ActiveRecord::Schema.define(:version => 20100911182348) do
+
+  create_table "thanks", :force => true do |t|
+    t.string   "message",    :null => false
+    t.integer  "from_user",  :null => false
+    t.integer  "to_user",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"
