@@ -1,0 +1,13 @@
+<%= render 'new' %>
+
+<table>
+  <tr>
+    <th>Messages</th>
+  </tr>
+
+<% @thanks.each do |thank| %>
+  <tr>
+    <td>Thanks to <span><%=h target_user(thank) %></span><%=h thank.message %></td>
+  </tr>
+<% end %>
+</table>

@@ -14,4 +14,6 @@ group :development, :test do
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
+  gem 'factory_girl_rails'
+  gem 'ruby-debug19'
 end

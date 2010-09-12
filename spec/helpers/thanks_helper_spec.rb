@@ -1,15 +1,19 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ThanksHelper. For example:
-#
-# describe ThanksHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe ThanksHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # include ThanksHelper
+  it "return name of target_user user" do
+    to_user = Factory(:user, :name => 'Clark Kent', :login => 'clark')
+    thanks = Factory(:thank, :message => '#clark is Superman')
+
+    target_user(thanks).should == 'Clark Kent'
+  end
+
+  it "return login of target_user user if name is empty" do
+    to_user = Factory(:user, :name => '', :login => 'clark')
+    thanks = Factory(:thank, :message => '#clark is Superman')
+
+    target_user(thanks).should == 'clark'
+  end
+
 end
