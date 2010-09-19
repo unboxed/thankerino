@@ -13,7 +13,7 @@ Feature: Manage thanks
 
   Scenario: Posting new thank you message
     Given I am on the home page
-      And I fill in "Thanks to" with "#superman for saving the world."
+      And I fill in "Thanks to" with "superman for saving the world."
       And I press "Thanks"
     Then I should see "Thanks to Clark Kent for saving the world."
       And I should be on the home page

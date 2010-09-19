@@ -5,7 +5,7 @@ describe Thank do
   before(:each) do
     @to_user = Factory(:user, :login => 'Fantomas')
     @valid_attributes = {
-      :message => "#Fantomas is here.",
+      :message => "Fantomas is here.",
       :from_user => Factory(:user),
       :to_user => @to_user
     }
@@ -20,13 +20,6 @@ describe Thank do
     thank = Thank.new(@valid_attributes)
 
     thank.save.should == false
-  end
-
-  it "save message without #prefix " do
-    @valid_attributes.merge!(:message => "##{@to_user.login} is comming.")
-    thank = Thank.create(@valid_attributes)
-
-    thank.message.should == " is comming."
   end
 
   it "belongs to user_from and user_to" do
@@ -48,29 +41,28 @@ describe Thank do
     it "login is in standard format" do
       to_user = Factory(:user, :login => 'spock', :name => 'Mr. Spock')
 
-      thank = Thank.create({:from_user => @from_user, :message => "Shut-up, #spock! We're rescuing you!"})
-      thank.to_user.should == to_user
-    end
-
-    it "login contain dots" do
-      to_user = Factory(:user, :login => 'mr.spock.a', :name => 'Mr. Spock')
-
-      thank = Thank.create({:from_user => @from_user, :message => "Shut-up, #mr.spock.a! We're rescuing you!"})
-      thank.to_user.should == to_user
-    end
-
-    it "login contain numbers" do
-      to_user = Factory(:user, :login => 'spock1', :name => 'Mr. Spock')
-
-      thank = Thank.create({:from_user => @from_user, :message => "Shut-up, #spock1! We're rescuing you!"})
+      thank = Thank.create({:from_user => @from_user, :message => "spock We're rescuing you!"})
       thank.to_user.should == to_user
     end
   end
+  
+  it "doesn't save thanks from user 1 to user 1" do
+    to_user = Factory(:user, :login => 'spock', :name => 'Mr. Spock')
+    thank = Thank.new({:from_user => to_user, :message => "spock We're rescuing you!"})
+    thank.save.should be_false
+  end
+
+  it "delete login from message" do
+    from_user = Factory(:user)
+    to_user = Factory(:user, :login => 'spock', :name => 'Mr. Spock')
+    thank = Thank.create({:from_user => from_user, :message => "spock We're rescuing you!"})
+    thank.message.should == " We're rescuing you!"
+  end
 
   # it "increase points for user" do
-  #   user = Factory(:user, :email => "mr.awsome@unboxedconsulting.com")
-  #   th1 = Factory(:thank, :user => user, :message => "Thanks #mr.awsome, you are great.")
-  #   th2 = Factory(:thank, :user => user, :message => "Thanks #mr.awsome, you are the best.")
+  #   user = Factory(:user, :login => "mr.awsome")
+  #   th1 = Factory(:thank, :user => user, :message => "mr.awsome you are great.")
+  #   th2 = Factory(:thank, :user => user, :message => "mr.awsome you are the best.")
   # 
   #   User.find_by_id(user.id).points.should == 2
   # end
