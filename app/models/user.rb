@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # end
 
   validates_numericality_of :points
+  validates_uniqueness_of :name
 
   def gain_point!
     self.points += 1

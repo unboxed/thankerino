@@ -7,6 +7,14 @@ class Thank < ActiveRecord::Base
   before_save :assign_user_from_hash_tag
   before_save :validate_source_and_target_user
 
+  def user_in_message
+    target_user = nil
+    User.all.each do |user|
+      target_user = user if self.message.include?(user.name) && (target_user.blank? || user.name.size > target_user.name.size)
+    end
+    target_user
+  end
+
   private
   def validate_source_and_target_user
     return false if self.to_user == from_user
@@ -15,13 +23,11 @@ class Thank < ActiveRecord::Base
   end
 
   def assign_user_from_hash_tag
-    name = self.message.split[0]
-    return false if name.blank?
-
-    user = User.where(:login => name)
+    user = user_in_message
     return false if user.blank?
 
-    self.to_user = user.first
-    self.message.sub!(name, '')
+    self.to_user = user
+    self.message.sub!(user.name, '')
   end
+  
 end

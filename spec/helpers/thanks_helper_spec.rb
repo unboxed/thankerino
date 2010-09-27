@@ -3,8 +3,8 @@ require 'spec_helper'
 describe ThanksHelper do
   # include ThanksHelper
   it "return name of target_user user" do
-    to_user = Factory(:user, :name => 'Clark Kent', :login => 'clark')
-    thanks = Factory(:thank, :message => 'clark is Superman')
+    to_user = Factory(:user, :name => 'Clark Kent')
+    thanks = Factory(:thank, :message => 'Clark Kent is Superman')
 
     target_user(thanks).should == 'Clark Kent'
   end

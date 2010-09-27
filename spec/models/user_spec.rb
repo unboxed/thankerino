@@ -13,6 +13,12 @@ describe User do
     end
   end
 
+  it "validate uniqueness of name" do
+    Factory(:user, :name => "New name")
+    user = Factory.build(:user, :name => "New name")
+    user.save.should be_false
+  end
+
   it "increase points by one" do
     user = Factory(:user, :points => 0)
     user.gain_point!
