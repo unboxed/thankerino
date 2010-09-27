@@ -45,7 +45,7 @@ describe Thank do
       thank.to_user.should == to_user
     end
   end
-  
+
   it "doesn't save thanks from user 1 to user 1" do
     to_user = Factory(:user, :login => 'spock', :name => 'Mr. Spock')
     thank = Thank.new({:from_user => to_user, :message => "spock We're rescuing you!"})
@@ -59,12 +59,20 @@ describe Thank do
     thank.message.should == " We're rescuing you!"
   end
 
-  # it "increase points for user" do
-  #   user = Factory(:user, :login => "mr.awsome")
-  #   th1 = Factory(:thank, :user => user, :message => "mr.awsome you are great.")
-  #   th2 = Factory(:thank, :user => user, :message => "mr.awsome you are the best.")
-  # 
-  #   User.find_by_id(user.id).points.should == 2
-  # end
+  describe "points for target use" do
+    it "are increases" do
+      from_user = Factory(:user, :login => "mr.awsome")
+      user = Factory(:user, :login => "mr.invisible")
+      thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!"})
 
+      User.find_by_id(user.id).points.should == 1
+    end
+
+    it "are not increased if the target user is same as source user" do
+      from_user = Factory(:user, :login => "mr.awsome")
+      thank = Thank.create({:from_user => from_user, :message => "mr.awsome is in the town!"})
+
+      User.find_by_id(from_user.id).points.should == 0
+    end
+  end
 end

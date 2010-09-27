@@ -5,11 +5,12 @@ class Thank < ActiveRecord::Base
   belongs_to :to_user, :class_name => 'User', :foreign_key => 'to_user'
 
   before_save :assign_user_from_hash_tag
-  before_save :validate_user_from_and_to
+  before_save :validate_source_and_target_user
 
   private
-  def validate_user_from_and_to
+  def validate_source_and_target_user
     return false if self.to_user == from_user
+    self.to_user.gain_point!
     true
   end
 
