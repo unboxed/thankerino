@@ -3,3 +3,4 @@ log/*.log
 tmp/**/*
 capybara*
 config/database.yml
+config/ldap.yml
