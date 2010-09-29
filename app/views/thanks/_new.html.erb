@@ -1,12 +1,10 @@
-<h1>New thank</h1>
-
-<%= form_for(@thank) do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :message, "Thanks to:" %><br />
-    <%= f.text_field :message %>
-  </p>
-  <p>
-    <%= f.submit 'Thanks' %>
-  </p>
-<% end %>
+<div id="thanks_form">
+  <%= form_for(@thank) do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :message, "THANKS TO..." %><br />
+      <%= f.text_field :message, :class => 'message' %>
+      <%= f.submit 'Thanks', :class => 'button' %>
+    </p>
+  <% end %>
+</div>

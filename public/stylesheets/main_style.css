@@ -1,0 +1,91 @@
+body {
+  padding: 20px;
+}
+
+h2 {
+  border-bottom: 4px solid #666;
+  width: 400px;
+}
+
+#main_border {
+  width: 980px;
+  height: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 4px solid #666;
+}
+
+#inner_border {
+  border: 4px solid #666;
+  height: 790px;
+  position: relative;
+}
+
+#menu {
+  border: 4px solid #666;
+  width: 400px;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  top: 80px;
+  left: 500px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+#footer_menu {
+  margin: 0 auto;
+  width: 1024px;
+  text-align: center;
+}
+
+#content {
+  width: 800px;
+  height: 600px;
+  position: relative;
+  top: 50px;
+  left: 80px;
+  background-color: #fff;
+}
+
+#thanks_form {
+  border: 4px solid #666;
+  padding-left: 100px;
+  margin-bottom: 20px;
+}
+
+#thanks_form input.message {
+  border: 4px solid #666;
+  width: 300px;
+  height: 25px;
+  font-size: 15px;
+  z-index: 1001;
+}
+
+#thanks_form input.button {
+  border: 4px solid #666;
+  height: 34px;
+}
+
+#thanks_list {
+  border: 4px solid #666;
+  padding: 30px;
+  height: 400px;
+}
+
+ul { 
+  border: 1px solid #666;
+  width: 100px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background-color: #fff;
+  position: absolute;
+}
+
+li {
+  position: relative;
+  z-index: 10000;
+}

@@ -6,3 +6,11 @@ Given /^I am logged in as "([^"]*)" with password "([^"]*)"$/ do |login, passwor
   fill_in("Password", :with => password)
   click_button("Login")
 end
+
+Given /^I should see "([^"]*)" in the main menu$/ do |menu_item|
+  page.should have_xpath("//*[@id='menu']/a[contains(., \"#{menu_item}\")]")
+end
+
+Given /^I should see "([^"]*)" in the footer menu$/ do |menu_item|
+  page.should have_xpath("//*[@id='footer_menu']/a[contains(., \"#{menu_item}\")]")
+end
