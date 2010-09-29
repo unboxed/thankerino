@@ -1,12 +1,10 @@
 <%= render 'new' %>
 <div id="thanks_list">
   <h2>RECENT APPRECIATION:</h2>
+  <ul>
 
-  <table>
   <% @thanks.each do |thank| %>
-    <tr>
-      <td>Thanks to <span><%=h target_user(thank) %></span><%=h thank.message %></td>
-    </tr>
+   <li>Thanks to <span><%=h target_user(thank) %></span><%=h thank.message %></li>
   <% end %>
-  </table>
+  </ul>
 </div>

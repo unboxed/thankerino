@@ -74,18 +74,17 @@ h2 {
   padding: 30px;
   height: 400px;
 }
+#thanks_list ul {
+  height: 340px;
+  width: 750px;
+  overflow: auto;
+  border: none;
+}
 
-ul { 
+ul.ui-autocomplete { 
   border: 1px solid #666;
-  width: 100px;
-  margin: 0;
   padding: 0;
   list-style-type: none;
   background-color: #fff;
   position: absolute;
-}
-
-li {
-  position: relative;
-  z-index: 10000;
 }

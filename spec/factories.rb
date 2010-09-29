@@ -7,8 +7,8 @@ Factory.define :user do |u|
 end
 
 Factory.define :thank do |t|
-  t.from_user {|a| a.association(:user, :login => 'login2') }
-  t.to_user {|a| a.association(:user, :login => 'login') }
+  t.from_user {|a| a.association(:user, :login => Factory.next(:login)) }
+  t.to_user {|a| a.association(:user, :login => Factory.next(:login)) }
   t.message "#login So Long, and Thanks for All the Fish."
 end
 

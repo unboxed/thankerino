@@ -37,3 +37,14 @@ Feature: Manage users
       And I should see "Name: Petr Zaparka"
       And I should see "Login: pet12r"
       And I should see "Email: petr@zaparka.cz"
+
+  Scenario: User can see proper information on his profile page
+    Given a user "petr" exists with login: "petr", name: "Petr Zaparka", email: "petr.zaparka@unboxedconsulting.com", password: "supersecret", password_confirmation: "supersecret", points: "4"
+      And a user "tom" exists
+      And a thank "3" exists with to_user: user "petr", from_user: user "tom", message: "Petr Zaparka for this awesome app"
+      And I am logged in as "petr" with password "supersecret"
+    Then I should see "Petr Zaparka"
+      And I should see "petr.zaparka@unboxedconsulting.com"
+      And I should see "Total points: 5"
+      And I should see "Points history"
+      And I should see "Thanks to Petr Zaparka for this awesome app" in the points history section 
