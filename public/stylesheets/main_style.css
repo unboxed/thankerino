@@ -7,6 +7,12 @@ h2 {
   width: 400px;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
 #main_border {
   width: 980px;
   height: 800px;
