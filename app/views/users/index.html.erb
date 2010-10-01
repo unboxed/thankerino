@@ -1,0 +1,9 @@
+<div id="thanks_list">
+  <h2>Community</h2>
+  <ul>
+
+  <% @users.each do |user| %>
+   <li><%=h user.name %> - <%=h user.points %></li>
+  <% end %>
+  </ul>
+</div>
