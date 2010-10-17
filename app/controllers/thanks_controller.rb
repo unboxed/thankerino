@@ -1,5 +1,5 @@
 class ThanksController < ApplicationController
-  before_filter :require_user
+  before_filter :authenticate_user!
 
   def index
     @thanks = Thank.all

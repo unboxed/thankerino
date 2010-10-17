@@ -10,14 +10,14 @@
 <body>
 <div id="main_border">
   <div id="inner_border">
-    <% if !current_user %>
+    <% if !user_signed_in? %>
       <%= link_to "REGISTER", new_account_path %> |
-      <%= link_to "LOGIN", new_user_session_path %>
+      <%= link_to "LOGIN",  new_session_path(resource_name) %>
     <% else %>
-      <%= link_to "LOGOUT", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+      <%= link_to "LOGOUT", destroy_user_session_path(current_user), :method => :delete, :confirm => "Are you sure you want to logout?" %>
     <% end %>
     
-    <% if current_user %>
+    <% if  user_signed_in? %>
       <div id="menu">
         <%= link_to "HOME", root_path %>
         <%= link_to "ME", account_path %>
@@ -32,7 +32,7 @@
     </div>
   </div>
 </div>
-<% if current_user %>
+<% if user_signed_in? %>
   <div id="footer_menu">
     <%= link_to "HOME", root_path %>
     <%= link_to "ME", account_path %>

@@ -2,8 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0'
 gem 'mysql2'
-gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', 
-:branch => 'rails3'
+gem 'devise'
 
 group :development, :test do
   gem 'capybara' , :git => 'http://github.com/jnicklas/capybara.git' #because of warning: regexp match /.../n against to UTF-8 string

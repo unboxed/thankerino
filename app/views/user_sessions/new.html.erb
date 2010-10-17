@@ -1,6 +1,6 @@
 <h1>Login</h1>
 
-<%= form_for @user_session, :url => user_session_path do |f| %>
+<%= form_for @user, :url => user_path do |f| %>
   <%= f.error_messages %>
   <%= f.label :login %><br />
   <%= f.text_field :login %><br />
@@ -8,7 +8,13 @@
   <%= f.label :password %><br />
   <%= f.password_field :password %><br />
   <br />
-  <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
+  <% if devise_mapping.rememberable? -%>
+    <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+  <% end -%>
+
   <br />
   <%= f.submit "Login" %>
 <% end %>
+
+<h2>Sign in</h2>
+
