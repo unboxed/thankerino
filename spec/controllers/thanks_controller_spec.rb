@@ -5,9 +5,10 @@ describe ThanksController do
   def mock_thank(stubs={})
     @mock_thank ||= mock_model(Thank, stubs)
   end
-  
+
   before(:each) do
     @user = Factory(:user)
+    sign_in @user
     controller.stub(:current_user).and_return @user
   end
 

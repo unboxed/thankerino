@@ -12,13 +12,18 @@ module NavigationHelpers
       '/'
 
     when /the registration page/
-      new_account_url
+      new_user_registration_url
 
     when /the login page/
       new_user_session_url
 
-    when /the user profile page/
+    when /the user edit page/
       edit_account_url
+
+    when /^the profile page of (.*)$/i
+      user = User.find_by_login($1)
+      account_url(user)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

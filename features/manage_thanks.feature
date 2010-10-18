@@ -9,7 +9,7 @@ Feature: Manage thanks
 
   Background:
      Given a user "petr" exists with name: "Clark Kent", login: "superman", email: "superman@crypton.com", password: "supersecret", password_confirmation: "supersecret"
-     And I am logged in as "petr" with password "supersecret"
+     And I am logged in as "petr" with password "supersecret" and email "petr@petr.com"
 
   Scenario: Posting new thank you message
     Given I am on the home page
