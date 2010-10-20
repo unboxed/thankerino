@@ -16,16 +16,13 @@
 <div id="main_border">
   <div id="inner_border">
     <% if !user_signed_in? %>
-      <%= link_to "REGISTER", new_account_path %> |
+      <%= link_to "REGISTER", new_user_path %> |
       <%= link_to "LOGIN",  new_session_path(resource_name) %>
     <% end %>
     
     <% if  user_signed_in? %>
       <div id="menu">
-        <%= link_to "HOME", root_path %>
-        <%= link_to "ME", account_path %>
-        <%= link_to "SCOREBOARD", root_path %>
-        <%= link_to "COMMUNITY", users_path %>
+        <%= render 'layouts/menu' %>
       </div>
     <% end %>
 
@@ -37,10 +34,7 @@
 </div>
 <% if user_signed_in? %>
   <div id="footer_menu">
-    <%= link_to "HOME", root_path %>
-    <%= link_to "ME", account_path %>
-    <%= link_to "SCOREBOARD", root_path %>
-    <%= link_to "COMMUNITY", root_path %>
+    <%= render 'layouts/menu' %>
   </div>
 <% end %>
 

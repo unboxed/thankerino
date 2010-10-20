@@ -1,31 +1,25 @@
-<p>
-  <b>Name:</b>
-  <%=h @user.name %>
-</p>
+<div id="profile">
+  <div class="inner">
+    <h2><%= image_tag('my_profile.jpg', :alt => 'Community') %></h2>
+    <ul class="profile_info">
+      <li><%= image_tag('avatar.jpg', :alt => 'thumb') %>
+      <p>Name: <%=h @user.name %><br />
+      Total points: <%=h @user.points %></p></li>
+      <li>
+      <% if current_user == @user %>
+        <%= link_to 'Edit', edit_user_path(@user) %>
+      <% end  %>
+      </li>
+    </ul>
+    
 
-<p>
-  <b>Login:</b>
-  <%=h @user.login %>
-</p>
+    <h2><%= image_tag('my_appreciation.jpg', :alt => 'Community') %></h2>
+    <ul>
+    <% thanks_for_user(@user).each do |thank| %>
+     <li><%= image_tag('avatar.jpg', :alt => 'thumb') %><p>Thanks to <%= link_to target_user(thank), user_path(thank.to_user) %> <%=h thank.message %> By&nbsp;<%= link_to source_user(thank), user_path(thank.from_user) %></p></li>
+    <% end %>
+    </ul>
 
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
-
-<p>
-  <b>Total points:</b>
-  <%=h @user.points %>
-</p>
-
-<div id="thanks_history">
-  <h2>Points history:</h2>
-  <ul>
-
-  <% thanks_for_user(@user).each do |thank| %>
-    <li>Thanks to <span><%=h target_user(thank) %></span><%=h thank.message %></li>
-  <% end %>
-  </ul>
+  </div>
 </div>
 
-<%= link_to 'Edit', edit_account_path %>

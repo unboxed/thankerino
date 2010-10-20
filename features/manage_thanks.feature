@@ -16,5 +16,5 @@ Feature: Manage thanks
       And I should see "RECENT APPRECIATION:"
       And I fill in "THANKS TO..." with "Clark Kent for saving the world."
       And I press "Thanks"
-    Then I should see "Thanks to Clark Kent for saving the world."
+    Then I should see "Thanks to Clark Kent for saving the world. By petr"
       And I should be on the home page

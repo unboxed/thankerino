@@ -1,10 +1,12 @@
 <%= render 'new' %>
 <div id="thanks_list">
-  <h2>RECENT APPRECIATION:</h2>
-  <ul>
+  <div class="inner">
+    <h2><%= image_tag('recent_appreciation.jpg', :alt => 'recent appreciation') %></h2>
+    <ul>
 
-  <% @thanks.each do |thank| %>
-   <li>Thanks to <span><%=h target_user(thank) %></span><%=h thank.message %></li>
-  <% end %>
-  </ul>
+    <% @thanks.reverse.each do |thank| %>
+     <li><%= image_tag('avatar.jpg', :alt => 'thumb') %><p>Thanks to <%= link_to target_user(thank), user_path(thank.to_user) %> <%=h thank.message %> By&nbsp;<%= link_to source_user(thank), users_path %></p></li>
+    <% end %>
+    </ul>
+  </div>
 </div>
