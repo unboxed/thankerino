@@ -13,8 +13,8 @@
     </ul>
     
 
-    <h2><%= image_tag('my_appreciation.jpg', :alt => 'Community') %></h2>
-    <ul>
+    <h2><%= image_tag('my_appreciation.jpg', :alt => 'my appreciation') %></h2>
+    <ul class="thanks_history">
     <% thanks_for_user(@user).each do |thank| %>
      <li><%= image_tag('avatar.jpg', :alt => 'thumb') %><p>Thanks to <%= link_to target_user(thank), user_path(thank.to_user) %> <%=h thank.message %> By&nbsp;<%= link_to source_user(thank), user_path(thank.from_user) %></p></li>
     <% end %>

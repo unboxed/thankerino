@@ -8,13 +8,17 @@ Given /^I am logged in as "([^"]*)" with password "([^"]*)" and email "([^"]*)"$
 end
 
 Given /^I should see "([^"]*)" in the main menu$/ do |menu_item|
-  page.should have_xpath("//*[@id='menu']/a[contains(., \"#{menu_item}\")]")
+  page.should have_xpath(".//*[@id='menu']/ul/li/a/img[@alt='#{menu_item}']")
 end
 
 Given /^I should see "([^"]*)" in the footer menu$/ do |menu_item|
-  page.should have_xpath("//*[@id='footer_menu']/a[contains(., \"#{menu_item}\")]")
+  page.should have_xpath(".//*[@id='footer_menu']/ul/li/a/img[@alt='#{menu_item}']")
 end
 
 Given /^I should see "([^"]*)" in the points history section$/ do |expected_text|
-  page.should have_xpath("//*[@id='thanks_history']/ul/li[contains(., \"#{expected_text}\")]")
+  page.should have_xpath("//*[@class='thanks_history']/li[contains(.,\"#{expected_text}\")]")
+end
+
+Given /^I should see "([^"]*)" image$/ do |image_alt|
+  page.should have_xpath(".//img[@alt='#{image_alt}']")
 end

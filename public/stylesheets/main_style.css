@@ -193,7 +193,7 @@ div.inner ul li p {
   height: 532px;
   background: url('../images/list_bottom_bg.jpg') 5px bottom no-repeat,
     url('../images/left_com_bg.jpg') left -1px no-repeat,
-    url('../images/top_com_bg.jpg') left top no-repeat,
+    url('../images/top_com_bg.jpg') left -1px no-repeat,
     url('../images/right_com_bg.jpg') right 33px no-repeat;
 }
 
@@ -220,4 +220,38 @@ div.inner ul li p {
 #profile ul.profile_info li {
   padding-top: 10px;
   height: 40px;
+}
+
+#profile form {
+  width: 600px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+#profile form input {
+  width: 300px;
+  height: 32px;
+  font-size: 15px;
+  z-index: 1001;
+  border: 4px solid #000;
+  margin-bottom: 20px;
+}
+
+#profile form label {
+  display: block;
+  float: left;
+  font-size: 15px;
+  font-family: Helvetica;
+/*  font-weight: bold;*/
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+#profile form input.submit { 
+  height: 39px;
+  width: 164px;
+  border: 4px solid #000;
+  background: url('../images/submit_btn.jpg') 0 0 no-repeat;
+  cursor: pointer;
+  font-size: 1px; 
 }

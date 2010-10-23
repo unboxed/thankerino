@@ -1,13 +1,15 @@
-<h1>Edit My Account</h1>
+<div id="profile">
+  <div class="inner">
+    <h2><%= image_tag('my_profile.jpg', :alt => 'Community') %></h2>
 
-<%= form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
+  <%= form_for @user, :url => user_path(@user) do |f| %>
+    <%= f.error_messages %>
 
-  <%= f.label :name %><br />
-  <%= f.text_field :name %><br />
+    <%= f.label :name %><br />
+    <%= f.text_field :name %><br />
 
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %>
-<% end %>
-
-<br /><%= link_to "My Profile", user_path(@user) %>
+    <%= render :partial => "form", :object => f %>
+    <%= f.submit "Update", :class => "submit" %>
+  <% end %>
+  </div>
+</div>

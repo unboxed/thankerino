@@ -17,12 +17,13 @@ module NavigationHelpers
     when /the login page/
       new_user_session_url
 
-    when /the user edit page/
-      edit_account_url
+    when /the user edit page for "([^\"]*)"/i
+      user = User.find_by_login($1)
+      edit_user_url(user)
 
     when /^the profile page of (.*)$/i
       user = User.find_by_login($1)
-      account_url(user)
+      user_url(user)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

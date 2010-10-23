@@ -28,17 +28,15 @@ Feature: Manage users
   Scenario: Edit user name and email
     Given a user "petr" exists with login: "petr", email: "petr.zaparka@unboxedconsulting.com", password: "supersecret", password_confirmation: "supersecret"
       And I am logged in as "petr" with password "supersecret" and email "petr.zaparka@unboxedconsulting.com"
-      And I am on the user edit page
+      And I am on the user edit page for "petr"
       And I fill in "Name" with "Petr Zaparka"
-      And I fill in "Login" with "pet12r"
       And I fill in "Email" with "petr@zaparka.cz"
       And I fill in "Change password" with "supersecret"
       And I fill in "Password confirmation" with "supersecret"
       And I press "Update"
     Then I should see "Account updated!"
       And I should see "Name: Petr Zaparka"
-      And I should see "Login: pet12r"
-      And I should see "Email: petr@zaparka.cz"
+      And I should see "Total points: 0"
 
   Scenario: User can see proper information on his profile page
     Given a user "petr" exists with login: "petr", name: "Petr Zaparka", email: "petr.zaparka@unboxedconsulting.com", password: "supersecret", password_confirmation: "supersecret", points: "4"
@@ -47,7 +45,6 @@ Feature: Manage users
       And I am logged in as "petr" with password "supersecret" and email "petr.zaparka@unboxedconsulting.com"
       And I am on the profile page of petr
     Then I should see "Petr Zaparka"
-      And I should see "petr.zaparka@unboxedconsulting.com"
       And I should see "Total points: 5"
-      And I should see "Points history"
-      And I should see "Thanks to Petr Zaparka for this awesome app" in the points history section 
+      And I should see "my appreciation" image
+      And I should see "Thanks to Petr Zaparka" in the points history section 
