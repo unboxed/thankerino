@@ -4,7 +4,7 @@ ThankYouNew::Application.routes.draw do
   # resource :account, :controller => "users", :except => [:index]
 
   # resources :user
-  resources :users
+  resources :users, :except => [:new, :create]
 
   resource :thanks
 

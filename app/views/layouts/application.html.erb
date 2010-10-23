@@ -16,11 +16,12 @@
 <div id="main_border">
   <div id="inner_border">
     <% if !user_signed_in? %>
-      <%= link_to "REGISTER", new_user_registration_path %> |
-      <%= link_to "LOGIN",  new_session_path(resource_name) %>
+      <%= link_to image_tag('register_btn.jpg', :alt => 'register'), new_user_registration_path, :class => "register_btn" if params[:controller] != "devise/registrations" %>
+    <%= link_to image_tag('login_btn.jpg', :alt => 'login'), new_session_path(resource_name), :class => "login_btn" if params[:controller] != "devise/sessions" %>
     <% end %>
     
     <% if  user_signed_in? %>
+      <%= link_to image_tag('logout.jpg', :alt => 'logout'), destroy_user_session_path(@user), :class => "logout" %>
       <div id="menu">
         <%= render 'layouts/menu' %>
       </div>

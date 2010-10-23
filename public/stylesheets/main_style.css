@@ -301,3 +301,16 @@ div.inner ul li p {
   color: #919191;
 }
 
+a.register_btn, a.login_btn, a.logout {
+  position: absolute;
+  left: 870px;
+  top: 10px;
+}
+
+a.logout {
+  left: 875px;
+}
+
+a.login_btn {
+  left: 885px;
+}
