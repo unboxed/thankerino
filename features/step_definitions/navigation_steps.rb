@@ -2,9 +2,9 @@ Given /^I am logged in as "([^"]*)" with password "([^"]*)" and email "([^"]*)"$
   User.create!(:name => "#{login}", :login => "#{login}", :password => "#{password}", :email =>"#{email}") unless User.find_by_login(login)
 
   visit new_user_session_url
-  fill_in('Email', :with => email)
-  fill_in("Password", :with => password)
-  click_button("Login")
+  fill_in('user_email', :with => email)
+  fill_in("user_password", :with => password)
+  click_button("user_submit")
 end
 
 Given /^I should see "([^"]*)" in the main menu$/ do |menu_item|

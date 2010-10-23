@@ -4,11 +4,10 @@ Feature: Manage users
   In order to handle users data
   as a User
   I want to have easy registration and editing process
-
+@test
   Scenario: Register new user
     Given I am on the registration page
       And I should see "Register"
-      And I fill in "Login" with "petr"
       And I fill in "Email" with "petr.zaparka@unboxedconsulting.com"
       And I fill in "Password" with "supersecret"
       And I fill in "Password confirmation" with "supersecret"
@@ -19,9 +18,9 @@ Feature: Manage users
   Scenario: Login user
     Given a user "petr" exists with login: "petr", email: "petr.zaparka@unboxedconsulting.com", password: "supersecret", password_confirmation: "supersecret"
       And I am on the login page
-      And I should see "Login"
-      And I fill in "Email" with "petr.zaparka@unboxedconsulting.com"
-      And I fill in "Password" with "supersecret"
+      And I should see "login" image
+      And I fill in "user_email" with "petr.zaparka@unboxedconsulting.com"
+      And I fill in "user_password" with "supersecret"
       And I press "Login"
     Then I should see "Login successful!"
 

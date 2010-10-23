@@ -16,7 +16,7 @@
 <div id="main_border">
   <div id="inner_border">
     <% if !user_signed_in? %>
-      <%= link_to "REGISTER", new_user_path %> |
+      <%= link_to "REGISTER", new_user_registration_path %> |
       <%= link_to "LOGIN",  new_session_path(resource_name) %>
     <% end %>
     
