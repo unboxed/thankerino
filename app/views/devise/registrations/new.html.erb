@@ -1,21 +1,23 @@
-<h2>Register</h2>
+<div id="register">
+  <div class="inner">
+    <h2><%= image_tag('register.jpg', :alt => 'register') %></h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+      <p><%= image_tag('email.jpg', :alt => 'email', :class =>"email") %>
+      <%= f.text_field :email %></p>
 
-  <p><%= f.label :name %><br />
-  <%= f.text_field :name %></p>
+      <p><%= image_tag('name.jpg', :alt => 'name', :class =>"name") %>
+      <%= f.text_field :name %></p>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+      <p><%= image_tag('password.jpg', :alt => 'password', :class =>"password") %>
+      <%= f.password_field :password %></p>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+      <p><%= image_tag('password.jpg', :alt => 'password', :class =>"password") %>
+      <%= f.password_field :password_confirmation %></p>
 
-  <p><%= f.submit "Register" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+      <p><%= f.submit "Register", :class => "submit" %></p>
+    <% end %>
+  </div>
+</div>

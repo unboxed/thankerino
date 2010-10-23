@@ -7,10 +7,10 @@ Feature: Manage users
 @test
   Scenario: Register new user
     Given I am on the registration page
-      And I should see "Register"
-      And I fill in "Email" with "petr.zaparka@unboxedconsulting.com"
-      And I fill in "Password" with "supersecret"
-      And I fill in "Password confirmation" with "supersecret"
+      And I should see "register" image
+      And I fill in "user_email" with "petr.zaparka@unboxedconsulting.com"
+      And I fill in "user_password" with "supersecret"
+      And I fill in "user_password_confirmation" with "supersecret"
       And I should not see "Current password"
       And I press "Register"
     Then I should see "Account registered!"
