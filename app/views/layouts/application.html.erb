@@ -14,6 +14,9 @@
 </head>
 <body>
 <div id="main_border">
+  <%- flash.each do |name, msg| -%>
+  <div id="flash_<%= name %>"><%= msg %></div>
+  <%- end -%>
   <div id="inner_border">
     <% if !user_signed_in? %>
       <%= link_to image_tag('register_btn.jpg', :alt => 'register'), new_user_registration_path, :class => "register_btn" if params[:controller] != "devise/registrations" %>
@@ -26,8 +29,6 @@
         <%= render 'layouts/menu' %>
       </div>
     <% end %>
-
-    <p style="color: green"><%= flash[:notice] %></p>
     <div id="content">
       <%= yield  %>
     </div>

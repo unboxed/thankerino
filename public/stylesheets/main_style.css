@@ -314,3 +314,37 @@ a.logout {
 a.login_btn {
   left: 885px;
 }
+
+#error {
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+}
+
+#flash_warning, #flash_notice, #flash_error, #flash_alert {
+  font-weight: bold;
+  left: 0;
+  top: 0;
+  padding: 5px 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 1000;
+  color: #000;
+  display: none;
+  border-bottom: 1px dashed #555;
+  padding: 20px 0;
+  opacity: 0.9;
+}
+
+#flash_notice {
+  background-color: #C8FFBF;
+}
+
+#flash_warning, #flash_alert {
+  background-color: #FFF9BF;
+}
+
+#flash_error {
+  background-color: #FFD1BF;
+}

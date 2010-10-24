@@ -20,7 +20,6 @@ class ThanksController < ApplicationController
 
   def new
     @thank = Thank.new
-
     respond_to do |format|
       format.html { redirect_to(root_url) }
     end
@@ -32,8 +31,10 @@ class ThanksController < ApplicationController
 
     respond_to do |format|
       if @thank.save
+        flash[:notice] = "Thank you message created."
         format.html { redirect_to(root_url) }
       else
+        flash[:notice] = "Please type the name of target user and thank you message."
         format.html { redirect_to(root_url) }
       end
     end
