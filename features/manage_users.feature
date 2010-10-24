@@ -44,6 +44,6 @@ Feature: Manage users
       And I am logged in as "petr" with password "supersecret" and email "petr.zaparka@unboxedconsulting.com"
       And I am on the profile page of petr
     Then I should see "Petr Zaparka"
-      And I should see "Total points: 5"
+      And I should see "Total points: 6"
       And I should see "my appreciation" image
       And I should see "Thanks to Petr Zaparka" in the points history section 

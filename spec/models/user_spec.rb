@@ -19,9 +19,9 @@ describe User do
     user.save.should be_false
   end
 
-  it "increase points by one" do
+  it "increase points by x points" do
     user = Factory(:user, :points => 0)
-    user.gain_point!
-    user.points.should == 1
+    user.gain_points!(2)
+    user.points.should == 2
   end
 end

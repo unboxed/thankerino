@@ -59,13 +59,13 @@ describe Thank do
     thank.message.should == " We're rescuing you!"
   end
 
-  describe "points for target use" do
-    it "are increased" do
+  describe "points for target user" do
+    it "are increased by two" do
       from_user = Factory(:user, :name => "mr.awsome")
       user = Factory(:user, :name => "mr.invisible")
       thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!"})
 
-      User.find_by_id(user.id).points.should == 1
+      User.find_by_id(user.id).points.should == 2
     end
 
     it "are not increased if the target user is same as source user" do
@@ -73,6 +73,16 @@ describe Thank do
       thank = Thank.create({:from_user => from_user, :message => "mr.awsome is in the town!"})
 
       User.find_by_id(from_user.id).points.should == 0
+    end
+  end
+
+  describe "points for source user" do
+    it "are increased by one" do
+      from_user = Factory(:user, :name => "mr.awsome", :points => 0)
+      user = Factory(:user, :name => "mr.invisible")
+      thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!"})
+
+      User.find_by_id(from_user.id).points.should == 1
     end
   end
 

@@ -18,7 +18,8 @@ class Thank < ActiveRecord::Base
   private
   def validate_source_and_target_user
     return false if self.to_user == from_user
-    self.to_user.gain_point!
+    self.to_user.gain_points!(2)
+    self.from_user.gain_points!(1)
     true
   end
 
