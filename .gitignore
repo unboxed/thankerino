@@ -1,6 +1,6 @@
 .bundle
 log/*.log
-tmp/**/*
+tmp/*
 capybara*
 config/database.yml
 config/ldap.yml
