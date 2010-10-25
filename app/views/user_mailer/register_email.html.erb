@@ -6,8 +6,10 @@
   <body>
     <h1>Welcome to Thankerino!, <%= @user.name %></h1>
     <p>
-      Your account was successfully created at http://thankerino.heroku.com,<br/>
-      your username is: <%= @user.name %>, password is: <%= @password %>
+      Your account was successfully created,<br/><br/>
+      your username: <%= @user.name %><br />
+      password: <%= @password %><br />
+      email: <%= @user.email %><br />
     </p>
     <p>
       To login to the site, just follow this link: http://thankerino.heroku.com/.
