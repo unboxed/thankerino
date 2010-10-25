@@ -8,8 +8,8 @@
 #errorExplanation {
   position: absolute;
   z-index: 1000;
-  top: -200px;
-  width: 400px;
+  top: 20px;
+  width: 600px;
   height: 200px;
   padding: 7px;
   padding: 12px;
@@ -23,7 +23,7 @@
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
-  font-size: 12px;
+  font-size: 14px;
   margin: -7px;
   background-color: #fff;
   color: #f00;
