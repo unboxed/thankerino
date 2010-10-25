@@ -22,3 +22,8 @@ end
 Given /^I should see "([^"]*)" image$/ do |image_alt|
   page.should have_xpath(".//img[@alt='#{image_alt}']")
 end
+
+Given /^I should see "([^"]*)" no\. (\d+) in the list$/ do |thankerino_user_score, position|
+  page.should have_xpath(".//*[@id='community']/div/ul/li[#{position.to_i}]/p[contains(.,'#{thankerino_user_score}')]")
+end
+

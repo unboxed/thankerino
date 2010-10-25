@@ -17,6 +17,9 @@ module NavigationHelpers
     when /the login page/
       new_user_session_url
 
+    when /the scoreboard page/
+      users_url
+
     when /the user edit page for "([^\"]*)"/i
       user = User.find_by_login($1)
       edit_user_url(user)

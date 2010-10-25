@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   def index
-    @users = User.all
+    @users = User.find(:all, :order => "points DESC")
     respond_with(@users)
   end
 
