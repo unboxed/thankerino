@@ -24,4 +24,11 @@ describe User do
     user.gain_points!(2)
     user.points.should == 2
   end
+
+  it "decrease points by x points" do
+    user = Factory(:user, :points => 3)
+    user.lose_points!(2)
+    user.points.should == 1
+  end
+
 end

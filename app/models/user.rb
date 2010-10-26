@@ -18,4 +18,9 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def lose_points!(number)
+    self.points -= number
+    self.save!
+  end
+
 end
