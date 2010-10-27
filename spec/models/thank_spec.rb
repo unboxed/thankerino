@@ -80,10 +80,29 @@ describe Thank do
     it "are increased by one" do
       from_user = Factory(:user, :name => "mr.awsome", :points => 0)
       user = Factory(:user, :name => "mr.invisible")
+      thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!", :created_at => Date.today})
+      thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!", :created_at => 1.day.ago})
+
+      User.find_by_id(from_user.id).points.should == 2
+    end
+
+    it "are not increased if he already thank to someone in that day" do
+      from_user = Factory(:user, :name => "mr.awsome", :points => 0)
+      user = Factory(:user, :name => "mr.invisible")
+      thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!", :created_at => Time.now})
+      thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!", :created_at => Time.now})
+
+      User.find_by_id(from_user.id).points.should_not == 2
+    end
+
+    it "are not increased if he already thank to someone in that day" do
+      from_user = Factory(:user, :name => "mr.awsome", :points => 0)
+      user = Factory(:user, :name => "mr.invisible")
       thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!"})
 
       User.find_by_id(from_user.id).points.should == 1
     end
+
   end
 
   describe "user_in_message return" do
@@ -102,6 +121,25 @@ describe Thank do
       user2 = Factory(:user, :name => 'user 23')
 
       thanks.user_in_message.should be_nil
+    end
+  end
+  
+  describe "todays_thanks" do
+    before(:each) do
+      Factory(:user, :name => 'user 2')
+      from_user = Factory(:user, :name => 'user 23')
+
+      @thk1 = Factory(:thank, :created_at => Date.today.to_s(:db), :message => 'thanks to user 2 he is great1.', :from_user => from_user)
+      @thk2 = Factory(:thank, :created_at => 1.day.ago, :message => 'thanks to user 2 he is great2.', :from_user => from_user)
+      @thk3 = Factory(:thank, :created_at => 2.minutes.ago, :message => 'thanks to user 2 he is great3.', :from_user => from_user)
+    end
+
+    it "returns thanks for today" do
+      Thank.todays_thanks.should include(@thk1,  @thk3)
+    end
+
+    it "doesn't return thanks from other days" do
+      Thank.todays_thanks.should_not include(@thk2)
     end
   end
 
