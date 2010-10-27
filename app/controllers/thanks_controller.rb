@@ -32,6 +32,7 @@ class ThanksController < ApplicationController
     respond_to do |format|
       if @thank.save
         flash[:notice] = "Thank you message created."
+        UserMailer.thanks_notice(@thank.to_user).deliver
         format.html { redirect_to(root_url) }
       else
         flash[:notice] = "Please type the name of target user and thank you message."
