@@ -7,7 +7,7 @@ class Thank < ActiveRecord::Base
   before_save :assign_user_from_hash_tag
   before_save :validate_source_and_target_user
 
-  scope :todays_thanks, where("created_at LIKE ?","#{Date.today.to_s}%")
+  # scope :todays_thanks, where("created_at LIKE ?","#{Date.today.to_s}%")
 
   def user_in_message
     target_user = nil
@@ -27,9 +27,9 @@ class Thank < ActiveRecord::Base
   end
 
   def gain_source_user_point_if_its_his_first_thanks_today
-    Thank.todays_thanks.each do |thank|
-      return if thank.from_user == self.from_user
-    end
+    # Thank.todays_thanks.each do |thank|
+    #   return if thank.from_user == self.from_user
+    # end
     self.from_user.gain_points!(1)
   end
 
