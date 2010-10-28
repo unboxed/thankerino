@@ -9,6 +9,7 @@ class Thank < ActiveRecord::Base
 
   scope :todays_thanks, {:conditions => ["created_at >= ?", Date.today]}
   scope :from_user, lambda {|user| where(:from_user => user.id) }
+  scope :to_user, lambda {|user| where(:to_user => user.id) }
 
   def user_in_message
     target_user = nil
