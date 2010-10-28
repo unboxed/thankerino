@@ -19,8 +19,7 @@
   <%- end -%>
   <div id="inner_border">
     <% if !user_signed_in? %>
-      <%= link_to image_tag('register_btn.jpg', :alt => 'register'), new_user_registration_path, :class => "register_btn" if params[:controller] != "devise/registrations" %>
-    <%= link_to image_tag('login_btn.jpg', :alt => 'login'), new_session_path(resource_name), :class => "login_btn" if params[:controller] != "devise/sessions" %>
+      <%= link_to image_tag('login_btn.jpg', :alt => 'login'), new_session_path(resource_name), :class => "login_btn" %>
     <% end %>
     
     <% if  user_signed_in? %>
