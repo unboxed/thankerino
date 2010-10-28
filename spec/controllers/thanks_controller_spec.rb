@@ -41,13 +41,13 @@ describe ThanksController do
 
     describe "with valid params" do
       it "assigns a newly created thank as @thank" do
-        Thank.stub(:new).and_return(mock_thank(:save => true))
+        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail')))
         post :create, :thank => {:these => 'params'}
         assigns[:thank].should equal(mock_thank)
       end
 
       it "redirects to the created thank" do
-        Thank.stub(:new).and_return(mock_thank(:save => true))
+        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail')))
         post :create, :thank => {}
         response.should redirect_to(root_url)
       end

@@ -8,6 +8,7 @@ class Thank < ActiveRecord::Base
   before_save :validate_source_and_target_user
 
   scope :todays_thanks, {:conditions => ["created_at >= ?", Date.today]}
+  scope :from_user, lambda {|user| where(:from_user => user.id) }
 
   def user_in_message
     target_user = nil
