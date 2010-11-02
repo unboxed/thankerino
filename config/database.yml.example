@@ -1,0 +1,20 @@
+login: &login
+  adapter: mysql2
+  host: localhost
+  username: root
+
+development:
+  database: thank_you_development
+  <<: *login
+    
+test: &TEST
+  database: thank_you_test
+  <<: *login
+
+production:
+  database: thank_you_production
+  <<: *login
+
+
+cucumber:
+  <<: *TEST
