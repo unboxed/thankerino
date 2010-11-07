@@ -3,14 +3,16 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   def index
-    @users = User.find(:all, :order => "points DESC")
+    @users = User.find(:all, :order => "points DESC").map do |user| 
+      {:name => user.name, :points => user.points, :user_id => user.id}
+    end
     respond_with(@users)
   end
 
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-  
+
   def update
     @user = current_user
     if @user.update_attributes(params[:user])

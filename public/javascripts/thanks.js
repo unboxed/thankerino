@@ -8,7 +8,7 @@ $.ajax({
  dataType: "json",
  success: function(data){
     $.each(data, function(index, item) {
-      user_list[index] = {label: item['user'].name};
+      user_list[index] = {label: item.name};
     });
 
     $( "#thank_message" ).autocomplete({

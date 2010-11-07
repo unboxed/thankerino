@@ -138,17 +138,94 @@ describe Thank do
 
     it "returns thanks for today" do
       todays_thanks = Thank.todays_thanks
-      
+
       todays_thanks.size.should == 3
       todays_thanks.should include(@thk1,  @thk3, @thk5)
     end
 
     it "doesn't return thanks from other days" do
       todays_thanks = Thank.todays_thanks
-      
+
       todays_thanks.size.should == 3
       todays_thanks.should_not include(@thk2, @thk4)
     end
   end
 
+  describe "from_user" do
+    before(:each) do
+      @user1 = Factory(:user, :name => 'user 2')
+      @user2 = Factory(:user, :name => 'user 1')
+
+      @thk1 = Factory(:thank, :message => 'thanks to user 2 he is great1.', :from_user => @user2)
+      @thk2 = Factory(:thank, :message => 'thanks to user 1 he is great2.', :from_user => @user1)
+      @thk3 = Factory(:thank, :message => 'thanks to user 2 he is great3.', :from_user => @user2)
+    end
+
+    it "returns all thanks from particular user" do
+      users_thanks = Thank.from_user(@user2)
+
+      users_thanks.size.should == 2
+      users_thanks.should include(@thk1, @thk3)
+    end
+
+    it "doesn't return thanks from different users" do
+      users_thanks = Thank.from_user(@user2)
+
+      users_thanks.should_not include(@thk2)
+    end
+  end
+
+  describe "to_user" do
+    before(:each) do
+      @user1 = Factory(:user, :name => 'user 1')
+      @user2 = Factory(:user, :name => 'user 2')
+      @user3 = Factory(:user, :name => 'user 3')
+
+      @thk1 = Factory(:thank, :message => 'thanks to user 2 he is great1.', :from_user => @user3)
+      @thk2 = Factory(:thank, :message => 'thanks to user 1 he is great2.', :from_user => @user2)
+      @thk4 = Factory(:thank, :message => 'thanks to user 3 he is great2.', :from_user => @user2)
+      @thk3 = Factory(:thank, :message => 'thanks to user 2 he is great3.', :from_user => @user1)
+    end
+
+    it "returns all thanks to particular user" do
+      users_thanks = Thank.to_user(@user2)
+
+      users_thanks.size.should == 2
+      users_thanks.should include(@thk1, @thk3)
+    end
+
+    it "doesn't return thanks to different users" do
+      users_thanks = Thank.to_user(@user2)
+
+      users_thanks.should_not include(@thk2, @thk4)
+    end
+  end
+
+  describe "thanks_from" do
+    before(:each) do
+      Factory(:user, :name => 'user 2')
+      from_user = Factory(:user, :name => 'user 23')
+
+      @thk1 = Factory(:thank, :created_at => "2010-11-07 12:45:00", :message => 'thanks to user 2 he is great1.', :from_user => from_user)
+      @thk2 = Factory(:thank, :created_at => "2010-11-06 12:45:00", :message => 'thanks to user 2 he is great2.', :from_user => from_user)
+      @thk3 = Factory(:thank, :created_at => "2010-11-07 12:40:00", :message => 'thanks to user 2 he is great3.', :from_user => from_user)
+      @thk4 = Factory(:thank, :created_at => "2010-11-05 12:44:00", :message => 'thanks to user 2 he is great4.', :from_user => from_user)
+      @thk5 = Factory(:thank, :created_at => "2010-11-07 10:44:00", :message => 'thanks to user 2 he is great4.', :from_user => from_user)
+    end
+
+    it "returns thanks from specific date" do
+      thanks = Thank.thanks_from("2010-11-06 12:45:00")
+
+      thanks.size.should == 4
+      thanks.should include(@thk1, @thk2, @thk3, @thk5)
+    end
+
+    it "doesn't return thanks older than specific date" do
+      thanks = Thank.thanks_from("2010-11-06 12:45:00")
+
+      thanks.size.should == 4
+      thanks.should_not include(@thk4)
+    end
+    
+  end
 end
