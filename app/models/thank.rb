@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: thanks
+#
+#  id         :integer(4)      not null, primary key
+#  message    :string(255)     not null
+#  from_user  :integer(4)
+#  to_user    :integer(4)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Thank < ActiveRecord::Base
   validates_length_of :message, :maximum => 100, :message => "Message is too long (maximum is 100 characters)."
 

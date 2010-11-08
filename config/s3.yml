@@ -1,0 +1,12 @@
+development:
+  access_key_id: AKIAIBFHTJS7E36VBGAA
+  secret_access_key: 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
+  bucket: thankerino-dev
+production:
+  access_key_id: AKIAIBFHTJS7E36VBGAA
+  secret_access_key: 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
+  bucket: thankerino-production
+test:
+  access_key_id: AKIAIBFHTJS7E36VBGAA
+  secret_access_key: 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
+  bucket: thankerino-test

@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.1'
 gem 'mysql2'
 gem 'devise'
+gem 'paperclip'
+gem 'aws-s3'
 
 group :development, :test do
   gem 'capybara'
@@ -17,4 +19,5 @@ group :development, :test do
   gem 'ruby-debug'
   gem 'heroku'
   gem 'taps'
+  gem 'annotate'
 end

@@ -1,17 +1,14 @@
 <div id="profile">
   <div class="inner">
     <h2><%= image_tag('my_profile.jpg', :alt => 'Community') %></h2>
-    <ul class="profile_info">
-      <li><%= image_tag('avatar.jpg', :alt => 'thumb') %>
+    <div class="info">
+      <%= image_tag(@user.avatar(:profile), :alt => 'thumb', :class => 'profile-image') %>
       <p>Name: <%=h @user.name %><br />
-      Total points: <%=h @user.points %></p></li>
-      <li>
-      <% if current_user == @user %>
-        <%= link_to 'Edit', edit_user_path(@user) %>
-      <% end  %>
-      </li>
-    </ul>
-    
+      Total points: <%=h @user.points %></p>
+      <div class="cleaner"></div>
+      <%= link_to 'Edit', edit_user_path(@user) if current_user == @user %>
+
+    </div>
 
     <h2><%= image_tag('my_appreciation.jpg', :alt => 'my appreciation') %></h2>
     <ul class="thanks_history">

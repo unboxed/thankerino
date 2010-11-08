@@ -2,11 +2,14 @@
   <div class="inner">
     <h2><%= image_tag('my_profile.jpg', :alt => 'Community') %></h2>
 
-  <%= form_for @user, :url => user_path(@user) do |f| %>
+  <%= form_for @user, :url => user_path(@user), :html => { :multipart => true } do |f| %>
     <%= f.error_messages %>
 
     <%= f.label :name %><br />
     <%= f.text_field :name %><br />
+
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %><br />
 
     <%= render :partial => "form", :object => f %>
     <%= f.submit "Update", :class => "submit" %>

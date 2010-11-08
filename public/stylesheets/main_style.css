@@ -223,6 +223,27 @@ div.inner ul li p {
   height: 40px;
 }
 
+#profile div.info {
+  position: relative;
+  height: 100px;
+  width: 500px;
+  margin-top: 20px;
+  left: 40px;
+}
+
+#profile div.info img {
+  float:left;
+  margin-bottom: 10px;
+}
+
+#profile div.info p {
+  float:left;
+  width: 300px;
+  padding-left: 20px;
+  font-family:Verdana;
+  font-size: 14px;
+}
+
 #profile form, #login form, #register form {
   width: 600px;
   margin-left: 50px;
@@ -348,4 +369,8 @@ a.login_btn {
 
 #flash_error {
   background-color: #FFD1BF;
+}
+
+.cleaner {
+  clear:both;
 }
