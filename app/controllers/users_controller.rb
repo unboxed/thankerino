@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   def index
-    @users = User.find(:all, :order => "points DESC").map do |user| 
-      {:name => user.name, :points => user.points, :user_id => user.id}
+    @users = User.find(:all, :order => "points DESC").map do |user|
+      {:name => user.name, :points => user.points, :user_id => user.id, :avatar => user.avatar(:list)}
     end
     respond_with(@users)
   end

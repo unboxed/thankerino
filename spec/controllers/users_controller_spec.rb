@@ -32,6 +32,11 @@ describe UsersController do
         get :index
         assigns[:users].first[:points].should == 2
       end
+
+      it "avatar" do
+        get :index
+        assigns[:users].first[:avatar].should == '/avatars/list/missing.png'
+      end
     end
 
     describe "users doesn't contain" do

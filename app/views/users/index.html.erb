@@ -4,7 +4,7 @@
     <ul>
 
     <% @users.each do |user| %>
-     <li><%= image_tag('avatar.jpg', :alt => 'thumb') %><p><%= link_to user[:name], user_path(user[:user_id]) %>: <%=h user[:points] %> points</p></li>
+     <li><%= image_tag(user[:avatar], :alt => 'thumb') %><p><%= link_to user[:name], user_path(user[:user_id]) %>: <%=h user[:points] %> points</p></li>
     <% end %>
     </ul>
   </div>
