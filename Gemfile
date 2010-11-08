@@ -15,4 +15,6 @@ group :development, :test do
   gem 'pickle'
   gem 'factory_girl_rails'
   gem 'ruby-debug'
+  gem 'heroku'
+  gem 'taps'
 end
