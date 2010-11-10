@@ -19,6 +19,28 @@ describe ThanksController do
       get :index
       assigns[:thanks].should == [mock_thank]
     end
+
+    it "assigns all thanks as @thanks" do
+      Thank.stub(:all).and_return([mock_thank])
+
+      get :index, :format => 'xml'
+      assigns[:thanks].should == [mock_thank]
+    end
+
+    it "assigns all thanks to hash" do
+      Factory(:user, :name => 'user 2')
+      from_user = Factory(:user, :name => 'user 23')
+      Factory(:thank, :created_at => Date.today.to_s(:db), :message => 'thanks to user 2 he is great1.', :from_user => from_user)
+      Factory(:thank, :created_at => 1.day.ago, :message => 'thanks to user 2 he is great2.', :from_user => from_user)
+
+      hash_thanks = controller.format_thanks
+      hash_thanks.size.should == 2
+      hash_thanks.first[:thank][:date].should == "2010-11-10"
+      hash_thanks.first[:thank][:thankername].should == "user 23"
+      hash_thanks.first[:thank][:thankedname].should == "user 2"
+      hash_thanks.first[:thank][:text].should == "thanks to  he is great1."
+    end
+
   end
 
   describe "GET show" do

@@ -7,6 +7,7 @@ class ThanksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xml { render :xml => {:thanks => format_thanks} }
     end
   end
 
@@ -38,6 +39,12 @@ class ThanksController < ApplicationController
         flash[:notice] = "Please type the name of target user and thank you message."
         format.html { redirect_to(root_url) }
       end
+    end
+  end
+
+  def format_thanks
+    Thank.find(:all).map do |thank|
+      {:thank => {:date => thank.created_at.to_date.to_s, :thankername => thank.from_user.name, :thankedname => thank.to_user.name, :text => thank.message}}
     end
   end
 end
