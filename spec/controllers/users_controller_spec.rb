@@ -22,6 +22,21 @@ describe UsersController do
       users_json.length.should == 3
     end
 
+    it "format_users for xml" do
+      User.delete_all
+      user1 = Factory(:user, :name => 'Petr Parker2')
+      user2 = Factory(:user, :name => 'Superman')
+
+      hash_users = controller.format_users
+      hash_users.size.should == 2
+
+      hash_users.first[:id].should == user1.id
+      hash_users.first[:name].should == user1.name
+
+      hash_users.last[:id].should == user2.id
+      hash_users.last[:name].should == user2.name
+    end
+
     describe "users contains" do
       it "points" do
         get :index
