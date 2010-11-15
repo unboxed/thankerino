@@ -36,7 +36,7 @@ describe ThanksController do
       hash_thanks = controller.format_thanks
       hash_thanks.size.should == 2
 
-      hash_thanks.first[:date].should == "2010-11-10"
+      hash_thanks.first[:date].should == Date.today.to_s
       hash_thanks.first[:thankername].should == "user 23"
       hash_thanks.first[:thankedname].should == "user 2"
       hash_thanks.first[:text].should == "thanks to  he is great1."
