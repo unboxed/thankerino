@@ -8,5 +8,8 @@ ThankYouNew::Application.routes.draw do
 
   resource :thanks
 
+  match "feedbacks" => 'feedbacks#create'
+  match "feedbacks/new" => 'feedbacks#new'
+
   root :to => "thanks#index"
 end
