@@ -27,6 +27,8 @@
 
 class User < ActiveRecord::Base
 
+  ROLE = {:admin => 1, :employee => 0}
+
   validates_uniqueness_of :name
   validates_numericality_of :points
 
@@ -52,6 +54,11 @@ class User < ActiveRecord::Base
   def lose_points!(number)
     self.points -= number
     self.save!
+  end
+
+  def is_admin?
+    return true if self.role == ROLE[:admin]
+    false
   end
 
 end

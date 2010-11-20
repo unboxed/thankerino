@@ -58,4 +58,30 @@ describe User do
     user.points.should == 1
   end
 
+  it "has got role" do
+    user = Factory(:user, :role => User::ROLE[:admin])
+    user.role.should == User::ROLE[:admin]
+  end
+
+  describe "ROLE constant" do
+    it "has admin role" do
+      User::ROLE[:admin].should == 1
+    end
+
+    it "has employee role" do
+      User::ROLE[:employee].should == 0
+    end
+  end
+
+  describe "is_admin?" do
+    it "return true if user is admin" do
+      user = Factory(:user, :role => User::ROLE[:admin])
+      user.is_admin?.should be_true
+    end
+
+    it "return true if user is admin" do
+      user = Factory(:user)
+      user.is_admin?.should be_false
+    end
+  end
 end
