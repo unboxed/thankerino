@@ -1,0 +1,17 @@
+<div id="admin">
+  <div class="inner">
+    <ul id="admin_menu">
+      <li><%= link_to "Manage users", new_import_url %></li>
+      <li>Generate newsletter</li>
+    </ul>
+    <div>
+      <%= form_for( :import, :url => import_url, :html => { :multipart => true, :method => :post }) do |f| %>
+        <label for="import_upload" class="mandatory">Select CSV file:</label>
+        <%= hidden_field_tag 'import_type', 'gmail_import' %>
+        <%= f.file_field :upload %>
+
+        <%= f.submit "import" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'devise'
 gem 'paperclip'
 gem 'aws-s3'
+gem 'fastercsv'
 
 group :development, :test do
   gem 'capybara'

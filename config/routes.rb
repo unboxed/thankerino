@@ -7,6 +7,11 @@ ThankYouNew::Application.routes.draw do
   resources :users, :except => [:new, :create]
 
   resource :thanks
+
+  scope "/admin" do
+    resource :import
+  end
+
   match "admin" => 'administration#index'
 
   match "feedbacks" => 'feedbacks#create'
