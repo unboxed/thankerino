@@ -12,16 +12,12 @@ class ImportsController < ApplicationController
     file = params[:import][:upload]
 
     import_module_name::import!(file)
-    # import = import_class_name.constantize.new(
-    #   :account => Context.account,
-    #   :user => Context.user,
-    #   :data_to_import => params[:import][:upload].read)
-    #   
-    # Transaction.transaction do
-    #   import.import!
-    #   render :action => :new
-    #   end
+    flash[:notice] = "Import successfull"
     render :action => :new
+
+    rescue StandardError => e
+      flash[:error] = "Something went wrong: #{e.message}. Fill the feedback form, please."
+      render :action => :new
   end
 
 end

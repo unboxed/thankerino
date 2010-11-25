@@ -6,6 +6,7 @@ gem 'devise'
 gem 'paperclip'
 gem 'aws-s3'
 gem 'fastercsv'
+gem "chardet"
 
 group :development, :test do
   gem 'capybara'

@@ -2,57 +2,37 @@ module GmailImport
 
   def self.import!(file)
     require 'fastercsv'
-    # require 'iconv'
-    # lines = []
-    file_content = file.read
-    # content = Iconv.iconv('utf-8//IGNORE', 'cp1250//IGNORE', file_content)
-    raw_statement = []
+    require 'iconv'
 
-    FasterCSV.parse(file_content, :col_sep => ',', :row_sep => "\r\n") do |row|
-      raw_statement << row
+    file_content = file.read
+
+    # content = Iconv.iconv('UTF-8', 'WINDOWS-1252', file_content)
+    raw_user_info = []
+    FasterCSV.parse(file_content) do |row|
+      raw_user_info << row
     end
-    require 'ruby-debug'
-    debugger
-    :a
-    # raw_statement.delete_at(0)
-    # raw_statement.delete_at(0)
-    # raw_statement.delete_at(raw_statement.length - 1)
-    # raw_statement.each do |statement|
-    #   
-    #   transaction = Transaction.new(
-    #     :name => statement[2],
-    #     :amount => parse_price(statement[6]),
-    #     :spent_at => parse_date(statement[0]),
-    #     :autocategorization => true,
-    #     :account => account,
-    #     :import => self,
-    #     :user => user || account.user
-    #   )
-    # 
-    #   transaction.included = transaction.unique?
-    #   transaction.save!
-    # end
-    # 
-    # self.data_to_import = nil
+
+    raw_user_info.delete_at(0)
+
+    raw_user_info.each do |user_info|
+      next if user_info.blank?
+      password = generate_password(user_info.last)
+      user = User.new(
+        :name => user_info.first,
+        :email => user_info.last,
+        :password => password
+      )
+
+      user.save!
+      UserMailer.register_email(user, password).deliver
+    end
   end
 
-  private
-
-    def parse_date(date_string)
-      day, month, year = date_string.split('-')
-      Date.civil(year.to_i, month.to_i, day.to_i)
-    end
-
-    def parse_price(price_string)
-      BigDecimal.new(price_string.sub(',','.').sub('CZK','').gsub(' ',''))
-    end
-
-    def self.parse_csv_file(path_to_csv)
-      lines = []
-      FasterCSV.foreach(path_to_csv) do |row|
-        lines << row
-      end
-      lines
-    end
+  def self.generate_password(mail)
+    password = []
+    6.times{password << [0..rand(mail.size)]}
+    a = password.to_s[0..5].insert(3,rand(100).to_s)
+    a.to_s.gsub("'",rand(10).to_s).gsub('"',rand(10).to_s)
+  end
 
 end
