@@ -1,9 +1,6 @@
 <div id="admin">
   <div class="inner">
-    <ul id="admin_menu">
-      <li><%= link_to "Manage users", new_import_url %></li>
-      <li>Generate newsletter</li>
-    </ul>
+    <%= render 'administration/menu' %>
     <div>
       <%= form_for( :import, :url => import_url, :html => { :multipart => true, :method => :post }) do |f| %>
         <label for="import_upload" class="mandatory">Select CSV file:</label>
@@ -13,5 +10,17 @@
         <%= f.submit "import" %>
       <% end %>
     </div>
+    <div>
+      <h3>Add single user</h3>
+      <%= form_for(:user, :url => users_url) do |form| %>
+        <%= form.label :name %><br />
+        <%= form.text_field :name %><br />
+
+        <%= form.label :email %><br />
+        <%= form.text_field :email %><br />
+        <%= form.submit "Add user" %>
+      <% end %>
+    </div>
+
   </div>
 </div>
