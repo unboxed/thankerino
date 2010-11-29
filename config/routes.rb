@@ -4,9 +4,14 @@ ThankYouNew::Application.routes.draw do
   # resource :account, :controller => "users", :except => [:index]
 
   # resources :user
-  resources :users, :except => [:new, :create]
+  resources :users, :except => [:new]
 
   resource :thanks
+
+  scope "/admin" do
+    resource :import
+  end
+
   match "admin" => 'administration#index'
 
   match "feedbacks" => 'feedbacks#create'

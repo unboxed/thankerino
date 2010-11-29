@@ -46,6 +46,12 @@ describe User do
     user.save.should be_false
   end
 
+  it "validate uniqueness of email" do
+    Factory(:user, :email => "12@34.com")
+    user = Factory.build(:user, :email => "12@34.com")
+    user.save.should be_false
+  end
+
   it "increase points by x points" do
     user = Factory(:user, :points => 0)
     user.gain_points!(2)
