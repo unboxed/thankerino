@@ -36,7 +36,7 @@ describe ThanksController do
       hash_thanks = controller.format_thanks
       hash_thanks.size.should == 2
 
-      hash_thanks.first[:date].should == Date.today.to_s
+      hash_thanks.first[:date].should == Date.today.to_datetime.strftime("%Y-%m-%d %H:%M:%S")
       hash_thanks.first[:thankername].should == "user 23"
       hash_thanks.first[:thankedname].should == "user 2"
       hash_thanks.first[:text].should == "thanks to  he is great1."
@@ -93,4 +93,39 @@ describe ThanksController do
     end
 
   end
+  
+  describe "POST create_thanks_from_iphone" do
+
+    describe "with valid params" do
+      it "assigns a newly created thank as @thank" do
+        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail')))
+        post :create_thanks_from_iphone, :thank => {:these => 'params'}
+        assigns[:thank].should equal(mock_thank)
+      end
+
+      it "redirects to the created thank" do
+        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail')))
+        post :create_thanks_from_iphone, :thank => {}
+        response.should redirect_to(root_url)
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns a newly created but unsaved thank as @thank" do
+        mock_th = mock('thanks', :save => false, :errors => '')
+        Thank.stub(:new).and_return(mock_th)
+        post :create_thanks_from_iphone, :thank => {:these => 'params'}
+        assigns[:thank].should equal(mock_th)
+      end
+
+      it "re-renders the 'new' template" do
+        mock_th = mock('thanks', :save => false, :errors => '')
+        Thank.stub(:new).and_return(mock_th)
+        post :create_thanks_from_iphone, :thank => {}
+        response.should redirect_to(root_url)
+      end
+    end
+
+  end
+  
 end

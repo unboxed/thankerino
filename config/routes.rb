@@ -12,4 +12,5 @@ ThankYouNew::Application.routes.draw do
   match "feedbacks/new" => 'feedbacks#new'
 
   root :to => "thanks#index"
+  match 'create_thanks_from_iphone' => 'thanks#create_thanks_from_iphone'
 end
