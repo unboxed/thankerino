@@ -5,7 +5,6 @@ describe UsersController do
     user1 = Factory(:user, :name => 'Petr Parker', :points => 2)
     user2 = Factory(:user)
     user3 = Factory(:user)
-    debugger
     sign_in user1
   end
 
