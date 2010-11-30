@@ -9,6 +9,64 @@ describe UsersController do
     sign_in user1
   end
 
+  describe "POST create" do
+    it "assing newly created user to @user" do
+      user = mock('mock_user', {:name => 'superman', :email => 'clark@kent.com', :save => true})
+      controller.stub(:redirect_back_or_default).and_return true
+      controller.should_receive(:generate_password).with('clark@kent.com').and_return 'abcd123'
+      User.stub(:new).with({"name"=>"superman", "password"=>"abcd123", "login"=>"clark@kent.com", "email"=>"clark@kent.com"}).and_return user
+
+      post :create, :user => {:name => 'superman', :email => 'clark@kent.com'}
+      assigns(:user).should == user
+    end
+
+    it "redirect to the administration page if the result user is saved" do
+      user = mock('mock_user', {:name => 'superman', :email => 'clark@kent.com', :save => true})
+      # UserMailer.stub(:register_email).and_return mock('mailer', :deliver => true)
+      controller.stub(:redirect_back_or_default).and_return true
+      controller.should_receive(:generate_password).with('clark@kent.com').and_return 'abcd123'
+      User.stub(:new).with({"name"=>"superman", "password"=>"abcd123", "login"=>"clark@kent.com", "email"=>"clark@kent.com"}).and_return user
+
+      post :create, :user => {:name => 'superman', :email => 'clark@kent.com'}
+      response.should redirect_to(new_import_url)
+    end
+
+    it "redirect to the administration page if the result user is not saved" do
+      user = mock('mock_user', {:name => 'superman', :email => 'clark@kent.com', :save => false})
+      controller.stub(:redirect_back_or_default).and_return true
+      controller.should_receive(:generate_password).with('clark@kent.com').and_return 'abcd123'
+      User.stub(:new).with({"name"=>"superman", "password"=>"abcd123", "login"=>"clark@kent.com", "email"=>"clark@kent.com"}).and_return user
+
+      post :create, :user => {:name => 'superman', :email => 'clark@kent.com'}
+      response.should redirect_to(new_import_url)
+    end
+
+    it "generate password for the new user" do
+      user = mock('mock_user', {:name => 'superman', :email => 'clark@kent.com', :save => false})
+      controller.stub(:redirect_back_or_default).and_return true
+
+      controller.should_receive(:generate_password).with('clark@kent.com').and_return 'abcd123'
+      User.stub(:new).with({"name" => 'superman', "email" => 'clark@kent.com', "password" => 'abcd123', "login" => 'clark@kent.com'}).and_return user
+
+      post :create, :user => {:name => 'superman', :email => 'clark@kent.com'}
+      assigns(:user).should == user
+    end
+
+    it "send an email after successful registration" do
+      user = mock('mock_user', {:name => 'superman', :email => 'clark@kent.com', :save => true})
+      mailer = mock('user_mailer')
+      controller.stub(:redirect_back_or_default).and_return true
+
+      controller.should_receive(:generate_password).with('clark@kent.com').and_return 'abcd123'
+      mailer.should_receive(:deliver).and_return true
+      User.stub(:new).with({"name" => 'superman', "email" => 'clark@kent.com', "password" => 'abcd123', "login" => 'clark@kent.com'}).and_return user
+      UserMailer.should_receive(:register_email).with(user, 'abcd123').and_return mailer
+
+      post :create, :user => {:name => 'superman', :email => 'clark@kent.com'}
+      assigns(:user).should == user
+    end
+  end
+
   describe "show all" do
     it "return all users" do
       get :index

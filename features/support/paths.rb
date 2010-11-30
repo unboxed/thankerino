@@ -28,6 +28,9 @@ module NavigationHelpers
       user = User.find_by_login($1)
       user_url(user)
 
+    when /the administration page/
+      admin_path
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

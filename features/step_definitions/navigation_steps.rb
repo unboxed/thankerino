@@ -27,3 +27,6 @@ Given /^I should see "([^"]*)" no\. (\d+) in the list$/ do |thankerino_user_scor
   page.should have_xpath(".//*[@id='community']/div/ul/li[#{position.to_i}]/p[contains(.,'#{thankerino_user_score}')]")
 end
 
+Then /^I assign "([^"]*)" csv file$/ do |file_name|
+  attach_file('import[upload]', File.join(Rails.root, 'spec', 'assets', file_name))
+end

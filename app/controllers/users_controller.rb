@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include UsersHelper
+
   before_filter :authenticate_user!, :except => [:new, :create]
   respond_to :html, :except => :index
 
@@ -19,12 +21,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    user = params[:user]
+    password = generate_password(user['email']) if user['email'].present?
+    user.merge!({:password => password, :login => user['email']})
+    @user = User.new(user)
+
     if @user.save
-      flash[:notice] = "Account registered!"
-      redirect_back_or_default user_url(@user)
+      flash[:notice] = "User created!"
+      UserMailer.register_email(@user, password).deliver
+      redirect_to new_import_url
     else
-      render :action => :new
+      redirect_to new_import_url
     end
   end
 

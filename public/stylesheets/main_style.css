@@ -142,6 +142,10 @@ div.inner h2 {
   padding-left: 20px;
 }
 
+div.password_reset h2 {
+  color: #000;
+}
+
 #thanks_list ul, #community ul, #profile ul {
   margin-left: 50px;
   margin-top: 20px;
@@ -186,7 +190,7 @@ div.inner ul li p {
   font-size: 12px;
 }
 
-#community, #profile,  #register {
+#community, #profile,  #register, #admin {
   position: absolute;
   top: 1px;
   left: -3px;
@@ -198,7 +202,7 @@ div.inner ul li p {
     url('../images/right_com_bg.jpg') right 33px no-repeat;
 }
 
-#community div.inner, #profile div.inner, #register div.inner{
+#community div.inner, #profile div.inner, #register div.inner, #admin div.inner{
   left: 4px;
   width: 697px;
   height: 502px;
@@ -327,6 +331,12 @@ div.inner ul li p {
   color: #919191;
 }
 
+#login form p.reset a{
+  left: 107px;
+  position: relative;
+  color: #919191;
+}
+
 a.register_btn, a.login_btn, a.logout {
   position: absolute;
   left: 870px;
@@ -377,4 +387,33 @@ a.login_btn {
 
 .cleaner {
   clear:both;
+}
+
+ul#admin_menu {
+  margin-top: 40px;
+  padding-left: 20px;
+  border-bottom: 4px solid #000;
+  height: 30px;
+}
+
+#admin_menu li {
+  display: block;
+  float: left;
+  width: 130px;
+  clear: none;
+  z-index: 9999;
+}
+
+#error_explanation h2 {
+  margin-top: 25px;
+  margin-left: 0px;
+  border-bottom: none;
+  width: 587px;
+  color: #000;
+  padding-left: 0px;
+}
+
+#error_explanation ul li {
+  margin-top: 10px;
+  color: #f00;
 }
