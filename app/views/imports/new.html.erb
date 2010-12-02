@@ -1,24 +1,23 @@
 <div id="admin">
   <div class="inner">
     <%= render 'administration/menu' %>
-    <div>
-      <%= form_for( :import, :url => import_url, :html => { :multipart => true, :method => :post }) do |f| %>
+    <div id="import_form">
+      <%= form_for( :import, :url => import_url, :html => { :multipart => true, :method => :post, :class => "hidden" }) do |f| %>
         <label for="import_upload" class="mandatory">Select CSV file:</label>
         <%= hidden_field_tag 'import_type', 'gmail_import' %>
         <%= f.file_field :upload %>
 
         <%= f.submit "import" %>
       <% end %>
-    </div>
-    <div>
-      <h3>Add single user</h3>
+
+      <h2>Add single user</h2>
       <%= form_for(:user, :url => users_url) do |form| %>
         <%= form.label :name %><br />
         <%= form.text_field :name %><br />
 
         <%= form.label :email %><br />
         <%= form.text_field :email %><br />
-        <%= form.submit "Add user" %>
+        <%= form.submit "Add user", :class => 'submit' %>
       <% end %>
     </div>
 
