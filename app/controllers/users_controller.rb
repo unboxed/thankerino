@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
   def format_users
     User.find(:all).map do |user|
-      {:id => user.id, :name => user.name}
+      {:id => user.id, :name => user.name, :points => user.points}
     end
   end
 end

@@ -82,17 +82,19 @@ describe UsersController do
 
     it "format_users for xml" do
       User.delete_all
-      user1 = Factory(:user, :name => 'Petr Parker2')
-      user2 = Factory(:user, :name => 'Superman')
+      user1 = Factory(:user, :name => 'Petr Parker2', :points => 20)
+      user2 = Factory(:user, :name => 'Superman', :points => 33)
 
       hash_users = controller.format_users
       hash_users.size.should == 2
 
       hash_users.first[:id].should == user1.id
       hash_users.first[:name].should == user1.name
+      hash_users.first[:points].should == user1.points
 
       hash_users.last[:id].should == user2.id
       hash_users.last[:name].should == user2.name
+      hash_users.last[:points].should == user2.points
     end
 
     describe "users contains" do
