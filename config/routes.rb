@@ -1,4 +1,5 @@
 ThankYouNew::Application.routes.draw do
+
   devise_for :user
 
   # resource :account, :controller => "users", :except => [:index]
@@ -10,6 +11,7 @@ ThankYouNew::Application.routes.draw do
 
   scope "/admin" do
     resource :import
+    resources :groups
   end
 
   match "admin" => 'administration#index'

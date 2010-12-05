@@ -6,6 +6,10 @@ Factory.define :user do |u|
   u.password_confirmation 'supersecret'
 end
 
+Factory.define :group do |t|
+  t.name 'group name'
+end
+
 Factory.define :thank do |t|
   t.from_user {|a| a.association(:user, :login => Factory.next(:login)) }
   t.to_user {|a| a.association(:user, :login => Factory.next(:login)) }

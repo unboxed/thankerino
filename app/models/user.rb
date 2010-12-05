@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
 
   has_many :thanks, :foreign_key => 'from_user'
 
+  has_and_belongs_to_many :groups
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,

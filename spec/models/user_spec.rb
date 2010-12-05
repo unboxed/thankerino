@@ -90,4 +90,13 @@ describe User do
       user.is_admin?.should be_false
     end
   end
+
+  it "has many groups" do
+    group1 = Factory(:group)
+    group2 = Factory(:group)
+    user = Factory(:user, :groups => [group1, group2])
+
+    user.groups.size.should == 2
+    user.groups.should include(group1, group2)
+  end
 end
