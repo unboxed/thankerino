@@ -142,6 +142,18 @@ div.inner h2 {
   padding-left: 20px;
 }
 
+#import_form h2 {
+  border-bottom: 4px solid #000000;
+  color: #000;
+  font-family: helvetica;
+  font-weight: normal;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-left: 0px;
+  width: 657px;
+  text-transform: uppercase;
+}
+
 div.password_reset h2 {
   color: #000;
 }
@@ -254,7 +266,12 @@ div.inner ul li p {
   margin-top: 30px;
 }
 
-#profile form input, #login form input, #register form input {
+#import_form form {
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+#profile form input, #login form input, #register form input, #import_form form input {
   width: 300px;
   height: 32px;
   font-size: 15px;
@@ -263,7 +280,7 @@ div.inner ul li p {
   margin-bottom: 20px;
 }
 
-#profile form label, #register form label{
+#profile form label, #register form label, #import_form form label{
   display: block;
   float: left;
   font-size: 15px;
@@ -276,7 +293,7 @@ div.inner ul li p {
   margin-bottom: 15px;
 }
 
-#profile form input.submit, #login form input.submit, #register form input.submit {
+#profile form input.submit, #login form input.submit, #register form input.submit, #import_form form input.submit {
   height: 39px;
   width: 164px;
   border: 4px solid #000;
@@ -301,7 +318,7 @@ div.inner ul li p {
       url('../images/right_login.jpg') right top no-repeat;
 }
 
-#login form input, #register form input {
+#login form input, #register form input, #import_form form input {
   width: 480px;
 }
 
@@ -399,7 +416,7 @@ ul#admin_menu {
 #admin_menu li {
   display: block;
   float: left;
-  width: 130px;
+  width: 60px;
   clear: none;
   z-index: 9999;
 }
@@ -416,4 +433,12 @@ ul#admin_menu {
 #error_explanation ul li {
   margin-top: 10px;
   color: #f00;
+}
+
+#import_form {
+  border: 1px solid #fff;
+}
+
+.hidden {
+  display: none;
 }

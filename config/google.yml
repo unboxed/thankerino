@@ -1,0 +1,14 @@
+# This file is overwritten on deployment by a version stored on the servers.
+# Make sure any added values are reflected there.
+
+development:
+  ga_code: UA-9809806-10
+
+staging:
+  ga_code: UA-9809806-10
+
+test:
+  ga_code: UA-9809806-10
+
+production:
+  ga_code: UA-9809806-5
