@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   respond_to :html, :except => :index
 
   def index
-    @users = User.find(:all, :order => "points DESC").map do |user|
+    @users = User.order("points DESC").map do |user|
       {:name => user.name, :points => user.points, :user_id => user.id, :avatar => user.avatar(:list)}
     end
 

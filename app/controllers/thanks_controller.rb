@@ -2,7 +2,7 @@ class ThanksController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @thanks = Thank.all
+    @thanks = Thank.order("created_at DESC").limit(50)
     @thank = Thank.new
 
     respond_to do |format|
@@ -35,7 +35,7 @@ class ThanksController < ApplicationController
   end
 
   def format_thanks
-    Thank.find(:all).map do |thank|
+    Thank.order("created_at DESC").limit(50).map do |thank|
       # {:date => thank.created_at.to_date.to_s, :thankername => thank.from_user.name, :thankedname => thank.to_user.name, :text => thank.message}
       {:date => thank.created_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S"), :thankername => thank.from_user.name, :thankedname => thank.to_user.name, :text => thank.message}      
     end

@@ -14,14 +14,19 @@ describe ThanksController do
 
   describe "GET index" do
     it "assigns all thanks as @thanks" do
-      Thank.stub(:all).and_return([mock_thank])
+      ordered_thanks = mock('ordered_thanks_mock')
+      ordered_thanks.should_receive(:limit).with(50).and_return [mock_thank]
+      Thank.stub(:order).with('created_at DESC').and_return ordered_thanks
 
       get :index
       assigns[:thanks].should == [mock_thank]
     end
 
     it "assigns all thanks as @thanks" do
-      Thank.stub(:all).and_return([mock_thank])
+      ordered_thanks = mock('ordered_thanks_mock')
+      ordered_thanks.should_receive(:limit).with(50).and_return [mock_thank]
+      Thank.stub(:order).with('created_at DESC').and_return ordered_thanks
+      controller.stub!(:format_thanks).and_return []
 
       get :index, :format => 'xml'
       assigns[:thanks].should == [mock_thank]

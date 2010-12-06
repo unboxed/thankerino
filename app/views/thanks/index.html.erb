@@ -4,7 +4,7 @@
     <h2><%= image_tag('recent_appreciation.jpg', :alt => 'recent appreciation') %></h2>
     <ul>
 
-    <% @thanks.reverse.each do |thank| %>
+    <% @thanks.each do |thank| %>
      <li><%= image_tag(thank.to_user.avatar(:list), :alt => 'thumb') %><p>Thanks to <%= link_to target_user(thank), user_path(thank.to_user) %> <%=h thank.message %> By <%= link_to source_user(thank), user_path(thank.from_user) %></p></li>
     <% end %>
     </ul>
