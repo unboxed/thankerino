@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
-  # GET /groups
-  # GET /groups.xml
+
   def index
     @groups = Group.all
 
@@ -10,21 +9,9 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1
-  # GET /groups/1.xml
-  def show
-    @group = Group.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @group }
-    end
-  end
-
-  # GET /groups/new
-  # GET /groups/new.xml
   def new
     @group = Group.new
+    @users = User.order("name ASC")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,19 +19,23 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
   end
 
-  # POST /groups
-  # POST /groups.xml
   def create
+    if params[:user].blank?
+      users = []
+    else
+      users = params[:user].map {|u| User.find(u.first)}
+    end
+
+    params[:group][:users] = users
     @group = Group.new(params[:group])
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to(@group, :notice => 'Group was successfully created.') }
+        format.html { redirect_to(groups_url, :notice => 'Group was successfully created.') }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
         format.html { render :action => "new" }
@@ -53,8 +44,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # PUT /groups/1
-  # PUT /groups/1.xml
   def update
     @group = Group.find(params[:id])
 
@@ -69,8 +58,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.xml
   def destroy
     @group = Group.find(params[:id])
     @group.destroy

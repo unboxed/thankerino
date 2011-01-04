@@ -11,7 +11,13 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <p class="group_name"><%= f.label :name, "Group's name"%><%= f.text_field :name, :class => 'name' %></p>
+  <ul>
+    <% @users.each do |user| %>
+     <li><%= check_box_tag "user[#{user.id}]", user.email %><span><%= label_tag "user[#{user.id}]", user.name %><span></li>
+    <% end %>
+  </ul>
+
+  <%= f.submit "Create group", :class => 'submit' %>
+
 <% end %>

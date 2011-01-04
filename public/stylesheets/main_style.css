@@ -174,12 +174,43 @@ ul.ui-autocomplete {
   position: absolute;
 }
 
+#admin div.inner form ul {
+  height: 300px;
+  margin-left: 50px;
+  margin-top: 20px;
+  overflow: auto;
+  width: 630px;
+}
+
 div.inner ul li {
   clear:both;
   width: 565px;
   height: 60px;
 }
 
+#admin div.inner form ul li {
+  clear:both;
+  width: 565px;
+  height: 30px;
+}
+
+#admin div.inner form ul li input {
+  margin-right: 20px;
+}
+
+#admin p.group_name {
+  clear: both;
+}
+
+#admin p.group_name label{
+  padding-left: 10px;
+  float: left;
+}
+
+#admin p.group_name input{
+  margin-left: 10px;
+  border: 1px solid #000;
+}
 div.inner ul li a {
   text-decoration: none;
   color: #3abde9;
@@ -293,7 +324,7 @@ div.inner ul li p {
   margin-bottom: 15px;
 }
 
-#profile form input.submit, #login form input.submit, #register form input.submit, #import_form form input.submit {
+#profile form input.submit, #login form input.submit, #register form input.submit, #import_form form input.submit, #admin form input.submit{
   height: 39px;
   width: 164px;
   border: 4px solid #000;

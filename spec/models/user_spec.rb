@@ -23,6 +23,7 @@
 #  avatar_content_type  :string(255)
 #  avatar_file_size     :integer(4)
 #  avatar_updated_at    :datetime
+#  role                 :integer(4)      default(0)
 #
 
 require 'spec_helper'

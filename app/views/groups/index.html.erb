@@ -1,21 +1,18 @@
-<h1>Listing groups</h1>
+<div id="admin">
+  <div class="inner">
+    <%= render 'administration/menu' %>
+    <%= link_to 'Create group', new_group_path %>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.users.size %></td>
+        <td><%= link_to 'Show', group %></td>
+        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+        <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<% @groups.each do |group| %>
-  <tr>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Group', new_group_path %>
+  </div>
+</div>
