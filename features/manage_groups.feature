@@ -14,8 +14,17 @@ Feature: Manage groups
       And I fill in "Group's name" with "London"
       And I check "Petr Zaparka"
       And I check "Tom Danger"
-      And I press "Create group"
+      And I press "Create Group"
     Then I should see "Group was successfully created"
-     And I should see "London"
-     And I should see "2"
+      And I should see the groups:
+        | London | 2 | Show | Edit | Destroy |
+    When I follow "Edit"
+    Then I should see "Editing group London"
+     And the "Petr Zaparka" checkbox should be checked
+     And the "Tom Danger" checkbox should be checked
+     And I uncheck "Tom Danger"
+     And I press "Update Group"
+    Then I should see "Group was successfully updated"
+      And I should see the groups:
+        | London | 1 |
 

@@ -1,15 +1,15 @@
 <div id="admin">
   <div class="inner">
     <%= render 'administration/menu' %>
-    <%= link_to 'Create group', new_group_path %>
-
+    <%= link_to 'Create group', new_group_path -%>
+    <table>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.name %></td>
-        <td><%= group.users.size %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= group.name -%></td>
+        <td><%= group.users.size -%></td>
+        <td><%= link_to 'Show', group -%></td>
+        <td><%= link_to 'Edit', edit_group_path(group) -%></td>
+        <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete -%></td>
       </tr>
     <% end %>
     </table>

@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+    @users = User.order("name ASC")
   end
 
   def create
@@ -45,11 +46,17 @@ class GroupsController < ApplicationController
   end
 
   def update
+    if params[:user].blank?
+      users = []
+    else
+      users = params[:user].map {|u| User.find(u.first)}
+    end
+    params[:group][:users] = users
     @group = Group.find(params[:id])
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        format.html { redirect_to(@group, :notice => 'Group was successfully updated.') }
+        format.html { redirect_to(groups_url, :notice => 'Group was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
