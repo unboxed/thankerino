@@ -30,7 +30,6 @@ describe GroupsController do
       get :new
       assigns(:users).should == []
     end
-
   end
 
   describe "GET edit" do
@@ -88,6 +87,14 @@ describe GroupsController do
         post :create, :group => {}
         response.should render_template("new")
       end
+      it "assigns all users as @users ordered by name ASC" do
+        Group.stub(:new) { mock_group(:save => false) }
+        User.should_receive(:order).with("name ASC").and_return []
+
+        post :create, :group => {}
+        assigns(:users).should == []
+      end
+      
     end
 
   end

@@ -5,13 +5,14 @@ class UsersController < ApplicationController
   respond_to :html, :except => :index
 
   def index
+    groups = Group.order("name ASC").map { |group| {:name => group.name} }
     @users = User.order("points DESC").map do |user|
       {:name => user.name, :points => user.points, :user_id => user.id, :avatar => user.avatar(:list)}
     end
-
+    @users << groups
     respond_to do |format|
       format.html
-      format.json { render :json => @users}
+      format.json { render :json => @users.flatten}
       format.xml { render :xml => {:users => format_users} }
     end
   end

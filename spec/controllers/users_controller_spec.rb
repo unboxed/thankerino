@@ -80,6 +80,14 @@ describe UsersController do
       users_json.length.should == 3
     end
 
+    it "response in json is merged with groups" do
+      Group.should_receive(:order).with("name ASC").and_return mock('group', :map => {:name => 'group1'})
+      User.stub(:order).and_return []
+
+      get :index, :format => 'json'
+      assigns[:users].should == [{"name"=>"group1"}]
+    end
+
     it "format_users for xml" do
       User.delete_all
       user1 = Factory(:user, :name => 'Petr Parker2', :points => 20)

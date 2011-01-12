@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101202164543) do
+ActiveRecord::Schema.define(:version => 20110111220823) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "subject"
@@ -32,11 +32,12 @@ ActiveRecord::Schema.define(:version => 20101202164543) do
   end
 
   create_table "thanks", :force => true do |t|
-    t.string   "message",    :null => false
+    t.string   "message",                         :null => false
     t.integer  "from_user"
     t.integer  "to_user"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "group_thanks", :default => false
   end
 
   create_table "users", :force => true do |t|

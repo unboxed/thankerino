@@ -31,7 +31,9 @@ class ThanksController < ApplicationController
   end
 
   def create
-    thank_helper
+    user_in_message = Thank.new(params[:thank]).user_in_message
+    thank_helper unless user_in_message.is_a?(Group)
+    group_thanks(user_in_message)
   end
 
   def format_thanks
@@ -40,9 +42,8 @@ class ThanksController < ApplicationController
       {:date => thank.created_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S"), :thankername => thank.from_user.name, :thankedname => thank.to_user.name, :text => thank.message}      
     end
   end
-  
-  
-  private 
+
+  private
   def thank_helper
     params[:thank].merge!(:from_user => current_user)
     @thank = Thank.new(params[:thank])
@@ -56,6 +57,28 @@ class ThanksController < ApplicationController
         flash[:notice] = "Please type the name of target user and thank you message."
         format.html { redirect_to(root_url) }
       end
-    end    
+    end
+  end
+
+  def group_thanks(group)
+    params[:thank].merge!(:from_user => current_user)
+    params[:thank].merge!(:group_thanks => true)
+    failed = false
+    group.users.each do |user|
+      @thank = Thank.new(params[:thank])
+      @thank.message = @thank.message.sub(group.name, user.name)
+      # UserMailer.thanks_notice(@thank.to_user).deliver
+      failed = true unless @thank.save
+    end
+
+    respond_to do |format|
+      if failed
+        flash[:notice] = "Thank you group message created."
+        format.html { redirect_to(root_url) }
+      else
+        flash[:notice] = "Please type the name of target user and thank you message."
+        format.html { redirect_to(root_url) }
+      end
+    end
   end
 end

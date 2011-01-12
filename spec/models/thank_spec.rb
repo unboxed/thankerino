@@ -27,6 +27,11 @@ describe Thank do
     Thank.create!(@valid_attributes)
   end
 
+  it "has got boolean flag group_thanks with default value false" do
+    thank = Thank.create!(@valid_attributes)
+    thank.group_thanks.should == false
+  end
+
   it "validate length of message to 100" do
     @valid_attributes.merge!(:message => "Space... the Final Frontier. These are the voyages of the starship Enterprise. Its continuing mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no one has gone before.")
     thank = Thank.new(@valid_attributes)
@@ -115,6 +120,14 @@ describe Thank do
       User.find_by_id(from_user.id).points.should == 1
     end
 
+    it "are not increased if the thank is flaged as grouped" do
+      from_user = Factory(:user, :name => "mr.awsome", :points => 0)
+      user = Factory(:user, :name => "mr.invisible")
+      thank = Thank.create({:from_user => from_user, :message => "mr.invisible We can see you!", :group_thanks => true})
+
+      User.find_by_id(from_user.id).points.should == 0
+    end
+
   end
 
   describe "user_in_message return" do
@@ -123,6 +136,26 @@ describe Thank do
       Factory(:user, :name => 'user')
       user2 = Factory(:user, :name => 'user 2')
       Factory(:user, :name => 'user 3')
+
+      thanks.user_in_message.should == user2
+    end
+
+    it "users if the name match the group" do
+      thanks = Factory.build(:thank, :message => 'thanks to Londoners he is great.')
+      user1 = Factory(:user, :name => 'user')
+      user2 = Factory(:user, :name => 'user 2')
+      user3 = Factory(:user, :name => 'user 3')
+      group = Factory(:group, :name => 'Londoners', :users => [user1, user3])
+
+      thanks.user_in_message.should == group
+    end
+
+    it "user only if the name match the user and group" do
+      thanks = Factory.build(:thank, :message => 'thanks to user 2 he is great.')
+      user1 = Factory(:user, :name => 'user')
+      user2 = Factory(:user, :name => 'user 2')
+      user3 = Factory(:user, :name => 'user 3')
+      Factory(:group, :name => 'user 2', :users => [user1, user3])
 
       thanks.user_in_message.should == user2
     end

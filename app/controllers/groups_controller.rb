@@ -39,6 +39,7 @@ class GroupsController < ApplicationController
         format.html { redirect_to(groups_url, :notice => 'Group was successfully created.') }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
+        @users = User.order("name ASC")
         format.html { render :action => "new" }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end

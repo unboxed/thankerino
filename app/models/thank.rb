@@ -26,9 +26,16 @@ class Thank < ActiveRecord::Base
 
   def user_in_message
     target_user = nil
+
     User.all.each do |user|
       target_user = user if self.message.include?(user.name) && (target_user.blank? || user.name.size > target_user.name.size)
     end
+    return target_user if target_user.present?
+
+    Group.all.each do |group|
+      return group if self.message.include?(group.name)
+    end
+
     target_user
   end
 
@@ -36,7 +43,7 @@ class Thank < ActiveRecord::Base
   def validate_source_and_target_user
     return false if self.to_user == from_user
     self.to_user.gain_points!(2)
-    gain_source_user_point_if_its_his_first_thanks_today
+    gain_source_user_point_if_its_his_first_thanks_today if self.group_thanks == false
 
     true
   end
@@ -50,10 +57,10 @@ class Thank < ActiveRecord::Base
 
   def assign_user_from_hash_tag
     user = user_in_message
-    return false if user.blank?
+    return false if user.blank? || user.is_a?(Array)
 
     self.to_user = user
     self.message.sub!(user.name, '')
   end
-  
+
 end
