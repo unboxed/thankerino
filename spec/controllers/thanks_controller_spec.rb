@@ -69,13 +69,36 @@ describe ThanksController do
 
     describe "with valid params" do
       it "assigns a newly created thank as @thank" do
-        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail')))
+        user_in_message = mock('user_in_message', :is_a? => false)
+        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail'), :user_in_message => user_in_message))
         post :create, :thank => {:these => 'params'}
         assigns[:thank].should equal(mock_thank)
       end
 
+      it "create group thanks" do
+        group = mock('user_in_message', :is_a? => true, :name => 'group_name')
+        mock_thanks = mock('thank_mock', :save => true, :name => 'user1', :to_user => mock('User', :name => 'user2'), :user_in_message => group, :message= => "asd", :message => "asd")
+        Thank.stub(:new).and_return mock_thanks
+        UserMailer.stub(:thanks_notice).and_return mock("mailer", :deliver => true)
+        group.should_receive(:users).at_least(1).and_return [mock_thanks]
+
+        post :create, :thank => {:these => 'params'}
+      end
+
+      it "send an email notification" do
+        group = mock('user_in_message', :is_a? => true, :name => 'group_name')
+        mock_thanks = mock('thank_mock', :save => true, :name => 'user1', :to_user => mock('User', :name => 'user2'), :user_in_message => group, :message= => "asd", :message => "asd")
+        Thank.stub(:new).and_return mock_thanks
+        group.stub(:users).and_return [mock_thanks]
+        UserMailer.should_receive(:thanks_notice).and_return mock("mailer", :deliver => true)
+
+        post :create, :thank => {:these => 'params'}
+      end
+
       it "redirects to the created thank" do
-        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail')))
+        user_in_message = mock('user_in_message', :is_a? => false)
+        Thank.stub(:new).and_return(mock_thank(:save => true, :to_user => mock('User', :email => 'mail'), :user_in_message => user_in_message))
+
         post :create, :thank => {}
         response.should redirect_to(root_url)
       end
@@ -83,14 +106,16 @@ describe ThanksController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved thank as @thank" do
-        mock_th = mock('thanks', :save => false, :errors => '')
+        user_in_message = mock('user_in_message', :is_a? => false)
+        mock_th = mock('thanks', :save => false, :errors => '', :user_in_message => user_in_message)
         Thank.stub(:new).and_return(mock_th)
         post :create, :thank => {:these => 'params'}
         assigns[:thank].should equal(mock_th)
       end
 
       it "re-renders the 'new' template" do
-        mock_th = mock('thanks', :save => false, :errors => '')
+        user_in_message = mock('user_in_message', :os_a? => false)
+        mock_th = mock('thanks', :save => false, :errors => '', :user_in_message => user_in_message)
         Thank.stub(:new).and_return(mock_th)
         post :create, :thank => {}
         response.should redirect_to(root_url)

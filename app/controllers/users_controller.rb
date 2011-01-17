@@ -9,10 +9,12 @@ class UsersController < ApplicationController
     @users = User.order("points DESC").map do |user|
       {:name => user.name, :points => user.points, :user_id => user.id, :avatar => user.avatar(:list)}
     end
+
     @users << groups
+    @users.flatten!
     respond_to do |format|
       format.html
-      format.json { render :json => @users.flatten}
+      format.json { render :json => @users}
       format.xml { render :xml => {:users => format_users} }
     end
   end

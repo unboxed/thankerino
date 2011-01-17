@@ -2,8 +2,8 @@
   <div class="inner">
     <h2><%= image_tag('scoreboard.jpg', :alt => 'Community') %></h2>
     <ul>
-
     <% @users.each do |user| %>
+     <%- next if user[:user_id].blank? -%>
      <li><%= image_tag(user[:avatar], :alt => 'thumb') %><p><%= link_to user[:name], user_path(user[:user_id]) %>: <%=h user[:points] %> points</p></li>
     <% end %>
     </ul>

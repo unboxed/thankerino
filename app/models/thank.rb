@@ -2,12 +2,13 @@
 #
 # Table name: thanks
 #
-#  id         :integer(4)      not null, primary key
-#  message    :string(255)     not null
-#  from_user  :integer(4)
-#  to_user    :integer(4)
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer(4)      not null, primary key
+#  message      :string(255)     not null
+#  from_user    :integer(4)
+#  to_user      :integer(4)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  group_thanks :boolean(1)      default(FALSE)
 #
 
 class Thank < ActiveRecord::Base

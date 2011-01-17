@@ -32,8 +32,11 @@ class ThanksController < ApplicationController
 
   def create
     user_in_message = Thank.new(params[:thank]).user_in_message
-    thank_helper unless user_in_message.is_a?(Group)
-    group_thanks(user_in_message)
+    if user_in_message.is_a?(Group)
+      group_thanks(user_in_message)
+    else
+      thank_helper
+    end
   end
 
   def format_thanks
@@ -64,11 +67,17 @@ class ThanksController < ApplicationController
     params[:thank].merge!(:from_user => current_user)
     params[:thank].merge!(:group_thanks => true)
     failed = false
+
     group.users.each do |user|
       @thank = Thank.new(params[:thank])
       @thank.message = @thank.message.sub(group.name, user.name)
-      # UserMailer.thanks_notice(@thank.to_user).deliver
       failed = true unless @thank.save
+    end
+
+    unless failed
+      group.users.each do |user|
+        UserMailer.thanks_notice(@thank.to_user).deliver
+      end
     end
 
     respond_to do |format|

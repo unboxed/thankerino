@@ -27,7 +27,7 @@ Feature: Manage thanks
       And I should see "Tom Opletal: 10 points" no. 1 in the list
       And I should see "Jan Opletal: 4 points" no. 2 in the list
       And I should see "Petr Opletal: 2 points" no. 3 in the list
-@test
+
   Scenario: Posting new thank you message for group
     Given a user "user1" exists with name: "Jan Opletal", points: 4, email: "jan@test.com", password: "supersecret" 
       And a user "user2" exists with name: "Tom Opletal", points: 10, email: "tom@test.com", password: "supersecret" 
@@ -37,7 +37,8 @@ Feature: Manage thanks
       And I should see "recent appreciation" image
       And I fill in "thank_message" with "londoners for being so great."
       And I press "Thanks"
-    Then I should see "londoners for being so great."
+    Then I should see "Jan Opletal for being so great."
+      And I should see "Tom Opletal for being so great."
       And I should be on the home page
       And user "jan@test.com" should has "6" point
       And user "tom@test.com" should has "12" point
