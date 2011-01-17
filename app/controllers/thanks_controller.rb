@@ -41,7 +41,6 @@ class ThanksController < ApplicationController
 
   def format_thanks
     Thank.order("created_at DESC").limit(50).map do |thank|
-      # {:date => thank.created_at.to_date.to_s, :thankername => thank.from_user.name, :thankedname => thank.to_user.name, :text => thank.message}
       {:date => thank.created_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S"), :thankername => thank.from_user.name, :thankedname => thank.to_user.name, :text => thank.message}      
     end
   end
