@@ -1,0 +1,17 @@
+
+<%= link_to 'New Score', new_scoreboard_path if current_user.is_admin? %>
+
+<div id="community">
+  <div class="inner">
+    <h2><%= image_tag('my_community.jpg', :alt => 'Community') %></h2>
+    <ul>
+    <% @scoreboards.each do |score| %>
+     <li>
+       <p><%= score.name %>
+        <%= link_to 'Edit', edit_scoreboard_path(score) if current_user.is_admin? %>
+       </p>
+     </li>
+    <% end %>
+    </ul>
+  </div>
+</div>

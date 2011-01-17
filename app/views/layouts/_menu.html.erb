@@ -2,5 +2,5 @@
   <li class="<%=h active_item?('thanks','index') %>"><%= link_to image_tag('home.png', :alt => 'home'), root_path %></li>
   <li class="<%=h active_item?('users','show') %>"><%= link_to image_tag('me.png', :alt => 'me'), user_path(current_user) %></li>
   <li class="<%=h active_item?('users','index') %>"><%= link_to image_tag('scoreboard.png', :alt => 'scoreboard'), users_path %></li>
-  <li class="<%=h active_item?('thanks','top') %>"><%= link_to image_tag('comunity.png', :alt => 'community'), root_path %></li>
+  <li class="<%=h active_item?('scoreboards','index') %>"><%= link_to image_tag('comunity.png', :alt => 'community'), scoreboards_path %></li>
 </ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111220823) do
+ActiveRecord::Schema.define(:version => 20110117163252) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "subject"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(:version => 20110111220823) do
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id"
     t.integer "user_id"
+  end
+
+  create_table "scoreboards", :force => true do |t|
+    t.string   "name"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "thanks", :force => true do |t|
