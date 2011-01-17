@@ -17,7 +17,7 @@ Feature: Manage groups
       And I press "Create Group"
     Then I should see "Group was successfully created"
       And I should see the groups:
-        | London | 2 | Show | Edit | Destroy |
+        | London | 2 | Show | Edit |
     When I follow "Edit"
     Then I should see "Editing group London"
      And the "Petr Zaparka" checkbox should be checked

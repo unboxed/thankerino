@@ -200,10 +200,12 @@ div.inner ul li {
 
 #admin p.group_name {
   clear: both;
+  padding-top: 20px;
 }
 
 #admin p.group_name label{
-  padding-left: 10px;
+  padding-left: 40px;
+
   float: left;
 }
 
@@ -472,4 +474,22 @@ ul#admin_menu {
 
 .hidden {
   display: none;
+}
+
+#admin div.group h2 {
+  text-align: left;
+  color: #000;
+}
+
+#admin div.group form ul {
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+#admin div.group form input.submit {
+  margin-left: 40px;
+}
+
+#admin div.group a.back{
+  margin-left: 10px;
 }

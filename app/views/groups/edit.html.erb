@@ -1,6 +1,10 @@
-<h1>Editing group <%= @group.name %></h1>
+<div id="admin">
+  <div class="inner group">
+    <%= render 'administration/menu' %>
 
-<%= render 'form' %>
+    <h2>Editing group <%= @group.name %></h2>
+    <%= render 'form' %>
 
-<%= link_to 'Show', @group %> |
-<%= link_to 'Back', groups_path %>
+
+  </div>
+</div>
