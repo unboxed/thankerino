@@ -11,4 +11,9 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => user.email, :subject => "New Thanks at Thankerino!")
   end
+
+  def party
+    mail(:to => 'petr.zaparka@unboxedconsulting.com', :subject => "party time")
+  end
+
 end
