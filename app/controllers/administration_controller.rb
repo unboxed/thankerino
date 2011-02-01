@@ -1,8 +1,13 @@
 class AdministrationController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only_admin
+
   respond_to :html
 
   def index
-    redirect_to(user_url(current_user)) unless current_user.is_admin?
+  end
+
+  def destroy
+    flash[:notice] = (User.reset_points) ? "All points deleted." : "Points were not reseted, contact administrator."
+    redirect_to admin_url
   end
 end

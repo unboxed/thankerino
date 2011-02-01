@@ -49,6 +49,14 @@ class User < ActiveRecord::Base
     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :path => ":attachment/:id/:style.:extension",
     :url => ":s3_domain_url"
 
+  def self.reset_points
+    User.find(:all).each do |u|
+      u.points = 0
+      return false unless u.save
+    end
+    true
+  end
+
   def gain_points!(number)
     self.points += number
     self.save!

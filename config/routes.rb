@@ -14,6 +14,7 @@ ThankYouNew::Application.routes.draw do
   scope "/admin" do
     resource :import
     resources :groups
+    match "delete_points" => 'administration#destroy'
   end
 
   match "admin" => 'administration#index'

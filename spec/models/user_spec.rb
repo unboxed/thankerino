@@ -100,4 +100,23 @@ describe User do
     user.groups.size.should == 2
     user.groups.should include(group1, group2)
   end
+
+  describe "reset_points" do
+    it "get all user and assign them 0 points" do
+      user = mock('user_mock', :save => true)
+      user.should_receive(:points=).with(0).and_return true
+      User.stub(:find).with(:all).and_return [user]
+
+      User.reset_points.should == true
+    end
+
+    it "return false is something went wrong" do
+      user = mock('user_mock', :save => false)
+      user.should_receive(:points=).with(0).and_return true
+      User.stub(:find).with(:all).and_return [user]
+
+      User.reset_points.should == false
+    end
+
+  end
 end
