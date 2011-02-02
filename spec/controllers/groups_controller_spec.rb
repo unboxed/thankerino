@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe GroupsController do
+  before(:each) do
+    controller.stub!(:authenticate_user!).and_return true
+    controller.stub!(:only_admin).and_return true
+  end
+
+  describe "before filters" do
+    it "shoult authenticate type of user" do
+      controller.should_receive(:only_admin).and_return true
+      get :index
+    end
+  end
 
   def mock_group(stubs={})
     (@mock_group ||= mock_model(Group).as_null_object).tap do |group|
