@@ -133,5 +133,35 @@ describe UsersController do
         assigns[:users].first[:email].should  be_nil
       end
     end
+
+    describe "UPDATE" do
+      it "with valid params redirect to user detail" do
+        user = mock('mock_user')
+        controller.stub(:current_user).and_return user
+        user.should_receive(:update_attributes).with({'these' => 'params'}).and_return true
+
+        put :update, :id => "1", :user => {'these' => 'params'}
+        response.should redirect_to(user_url(user))
+      end
+
+      it "with valid params update only non empty values" do
+        user = mock('mock_user')
+        controller.stub(:current_user).and_return user
+        user.should_receive(:update_attributes).with({"these"=>"params", "another params"=>"values"}).and_return true
+
+        put :update, :id => "1", :user => {'these' => 'params', 'empty' => '', 'another params' => 'values'}
+        response.should redirect_to(user_url(user))
+      end
+
+      it "with invalid params render edit template" do
+        user = mock('mock_user')
+        controller.stub(:current_user).and_return user
+        user.should_receive(:update_attributes).and_return false
+
+        put :update, :id => "1", :user => {'these' => 'params'}
+        response.should render_template("edit")
+      end
+
+    end
   end
 end

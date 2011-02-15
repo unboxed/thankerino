@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+         # , 
+  # validates_presence_of :password_confirmation, :on => :update, :message => "can't be blank"
+  # validates_confirmation_of :password_confirmation, :if => Proc.new { |user| user.password != user.password_confirmation }
+  # devise :validatable, 
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :name, :login, :password, :password_confirmation, :remember_me, :avatar

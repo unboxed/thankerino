@@ -48,6 +48,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    params[:user].delete_if {|key, value| value == ""}
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to user_url(@user)
