@@ -13,5 +13,20 @@
 require 'spec_helper'
 
 describe Scoreboard do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has mandatory name" do
+    sc = Factory.build(:scoreboard, :name => "")
+    sc.save.should == false
+  end
+
+  it "has mandatory user_id" do
+    sc = Factory.build(:scoreboard, :name => "monthly winer", :user => nil)
+    sc.save.should == false
+  end
+
+  it "has one user" do
+    user = Factory(:user)
+    sc = Factory(:scoreboard, :user => user)
+    sc.user.should == user
+  end
+
 end

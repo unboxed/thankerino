@@ -16,6 +16,15 @@ Factory.define :thank do |t|
   t.message "#login So Long, and Thanks for All the Fish."
 end
 
+Factory.define :scoreboard do |t|
+  t.name { Factory.next(:name) }
+  t.user { Factory(:user) }
+end
+
+Factory.sequence :score_name do |n|
+  "Month winner#{n}"
+end
+
 Factory.sequence :name do |n|
   "Jan Hus#{n}"
 end

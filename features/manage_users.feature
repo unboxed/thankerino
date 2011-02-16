@@ -4,7 +4,7 @@ Feature: Manage users
   In order to handle users data
   as a User
   I want to have easy registration and editing process
-@test
+
   Scenario: Register new user
     Given I am on the registration page
       And I should see "register" image

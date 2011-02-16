@@ -26,7 +26,7 @@ module NavigationHelpers
 
     when /^the profile page of (.*)$/i
       user = User.find_by_login($1)
-      user_url(user)
+      user_path(user)
 
     when /the administration page/
       admin_path

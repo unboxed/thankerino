@@ -1,18 +1,12 @@
-
-
-
 <div id="community">
   <div class="inner">
-    <h2><%= image_tag('my_community.jpg', :alt => 'Community') %></h2>
-    <%= link_to 'New Score', new_scoreboard_path if current_user.is_admin? %>
+    <h2><%= image_tag('scoreboard.jpg', :alt => 'Scoreboard') %></h2>
     <ul>
     <% @scoreboards.each do |score| %>
-     <li>
-       <p><%= score.name %>
-        <%= link_to 'Edit', edit_scoreboard_path(score) if current_user.is_admin? %>
-       </p>
-     </li>
+    <li class="score">
+      <h3><%= score.name %></h3>
+      <%= image_tag(score.user.avatar(:profile), :alt => 'thumb', :class => 'profile-image') %>
+      <p><%= link_to score.user.name, user_path(score.user) %></p>
     <% end %>
-    </ul>
   </div>
 </div>

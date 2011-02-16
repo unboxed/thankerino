@@ -235,6 +235,13 @@ div.inner ul li p {
   font-size: 12px;
 }
 
+div.inner ul li.score {
+  margin-bottom: 30px;
+}
+
+div.inner ul li.score h3 {
+  margin-bottom: 5px;
+}
 #community, #profile,  #register, #admin {
   position: absolute;
   top: 1px;

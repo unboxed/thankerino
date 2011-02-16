@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
   validates_numericality_of :points
 
   has_many :thanks, :foreign_key => 'from_user'
-
   has_and_belongs_to_many :groups
+  has_many :scoreboards
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

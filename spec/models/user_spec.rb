@@ -117,6 +117,19 @@ describe User do
 
       User.reset_points.should == false
     end
+  end
 
+  it "has many scoreboards" do
+    user = Factory(:user)
+    user.scoreboards.should == []
+  end
+
+  it "has many assigned scoreboards" do
+    sc1 = Factory(:scoreboard)
+    sc2 = Factory(:scoreboard)
+    sc3 = Factory(:scoreboard)
+
+    user = Factory(:user, :scoreboards => [sc1,sc2,sc3])
+    user.scoreboards.should include(sc1,sc2,sc3)
   end
 end
