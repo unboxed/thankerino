@@ -7,6 +7,7 @@ gem 'paperclip'
 gem 'aws-s3'
 gem 'fastercsv'
 gem "chardet"
+gem 'hoptoad_notifier'
 
 group :development, :test do
   gem 'capybara'
