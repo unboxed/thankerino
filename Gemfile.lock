@@ -159,6 +159,8 @@ GEM
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
+    steak (1.1.0)
+      rspec (>= 1.3)
     taps (0.3.15)
       json (~> 1.4.6)
       rack (>= 1.0.1)
@@ -202,4 +204,5 @@ DEPENDENCIES
   rspec-rails
   ruby-debug
   spork
+  steak
   taps
