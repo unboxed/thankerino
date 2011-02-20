@@ -1,23 +1,28 @@
-<h1>Listing companies</h1>
+<div id="admin">
+  <div class="inner company">
+    <%= render 'administration/menu' %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <h1>Listing companies</h1>
+    <p>
+      <%= link_to 'New Company', new_company_path %>
+    </p>
 
-<% @companies.each do |company| %>
-  <tr>
-    <td><%= company.name %></td>
-    <td><%= link_to 'Show', company %></td>
-    <td><%= link_to 'Edit', edit_company_path(company) %></td>
-    <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <table class="list">
+      <tr>
+        <th>Company</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
 
-<br />
-
-<%= link_to 'New Company', new_company_path %>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>

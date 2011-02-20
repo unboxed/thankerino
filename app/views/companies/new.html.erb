@@ -1,5 +1,10 @@
-<h1>New company</h1>
+<div id="admin">
+  <div class="inner company">
+    <%= render 'administration/menu' %>
+    <h2>New company</h2>
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<%= link_to 'Back', companies_path %>
+    <p><%= link_to 'Back', companies_path %></p>
+  </div>
+</div>

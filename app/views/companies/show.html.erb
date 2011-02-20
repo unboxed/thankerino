@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div id="admin">
+  <div class="inner company">
+    <%= render 'administration/menu' %>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
+    <p>Company: <%= @company.name %></p>
 
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+    <p>
+      <%= link_to 'Edit', edit_company_path(@company) %> |
+      <%= link_to 'Back', companies_path %>
+    </p>
+    </div>
+  </div>

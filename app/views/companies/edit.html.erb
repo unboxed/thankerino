@@ -1,6 +1,12 @@
-<h1>Editing company</h1>
+<div id="admin">
+  <div class="inner company">
+    <%= render 'administration/menu' %>
+    <h2>Editing company</h2>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+    <%= render 'form' %>
+    <p>
+      <%= link_to 'Show', @company %> |
+      <%= link_to 'Back', companies_path %>
+    </p>
+  </div>
+</div>
