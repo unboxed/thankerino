@@ -21,6 +21,14 @@ Factory.define :scoreboard do |t|
   t.user { Factory(:user) }
 end
 
+Factory.define :company do |t|
+  t.name { Factory.next(:company_name) }
+end
+
+Factory.sequence :company_name do |n|
+  "Comapny #{n}"
+end
+
 Factory.sequence :score_name do |n|
   "Month winner#{n}"
 end

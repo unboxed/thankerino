@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110215171858) do
+ActiveRecord::Schema.define(:version => 20110220201443) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.boolean  "is_public",  :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "feedbacks", :force => true do |t|
     t.string   "subject"
@@ -52,9 +59,9 @@ ActiveRecord::Schema.define(:version => 20110215171858) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "login"
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                                              :null => false
+    t.string   "encrypted_password",   :limit => 128,                :null => false
+    t.string   "password_salt",                                      :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -71,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110215171858) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "role",                                :default => 0
+    t.integer  "company_id",                          :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

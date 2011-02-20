@@ -5,9 +5,9 @@
 #  id                   :integer(4)      not null, primary key
 #  name                 :string(255)
 #  login                :string(255)
-#  email                :string(255)     default(""), not null
-#  encrypted_password   :string(128)     default(""), not null
-#  password_salt        :string(255)     default(""), not null
+#  email                :string(255)     not null
+#  encrypted_password   :string(128)     not null
+#  password_salt        :string(255)     not null
 #  reset_password_token :string(255)
 #  remember_token       :string(255)
 #  remember_created_at  :datetime
@@ -24,6 +24,7 @@
 #  avatar_file_size     :integer(4)
 #  avatar_updated_at    :datetime
 #  role                 :integer(4)      default(0)
+#  company_id           :integer(4)      default(0)
 #
 
 require 'spec_helper'
@@ -131,5 +132,11 @@ describe User do
 
     user = Factory(:user, :scoreboards => [sc1,sc2,sc3])
     user.scoreboards.should include(sc1,sc2,sc3)
+  end
+
+  it "has company" do
+    company = Factory(:company)
+    user = Factory(:user, :company => company)
+    user.company.should == company
   end
 end

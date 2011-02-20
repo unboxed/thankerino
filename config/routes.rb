@@ -1,5 +1,7 @@
 ThankYouNew::Application.routes.draw do
 
+  resources :companies
+
   resources :scoreboards
 
   devise_for :user

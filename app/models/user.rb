@@ -5,9 +5,9 @@
 #  id                   :integer(4)      not null, primary key
 #  name                 :string(255)
 #  login                :string(255)
-#  email                :string(255)     default(""), not null
-#  encrypted_password   :string(128)     default(""), not null
-#  password_salt        :string(255)     default(""), not null
+#  email                :string(255)     not null
+#  encrypted_password   :string(128)     not null
+#  password_salt        :string(255)     not null
 #  reset_password_token :string(255)
 #  remember_token       :string(255)
 #  remember_created_at  :datetime
@@ -24,6 +24,7 @@
 #  avatar_file_size     :integer(4)
 #  avatar_updated_at    :datetime
 #  role                 :integer(4)      default(0)
+#  company_id           :integer(4)      default(0)
 #
 
 class User < ActiveRecord::Base
@@ -36,6 +37,7 @@ class User < ActiveRecord::Base
   has_many :thanks, :foreign_key => 'from_user'
   has_and_belongs_to_many :groups
   has_many :scoreboards
+  belongs_to :company
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
